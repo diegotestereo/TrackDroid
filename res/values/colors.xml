@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="amarillo">#E5F201</color>
+    <color name="amarilloforte">#CDDB0E</color>
+    <color name="negroobs">#0C1B17</color>
+    <color name="blancobs">#F6FFE2</color>
+    <color name="gris">#97A38E</color>
+    <color name="verdeclaro">#65751B</color>
+</resources>
