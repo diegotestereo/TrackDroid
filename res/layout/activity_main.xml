@@ -9,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mdqandroid.trackdroid.MainActivity" >
+    tools:context="com.mdqandroid.trackdroid.MainActivity"
+      android:layout_margin="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,13 +18,15 @@
         android:background="@drawable/fondo1"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="5dp" >
+        android:padding="5dp" 
+        android:layout_margin="2dp">
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sensores"
+            android:textColor="@color/verdeclaro"
             android:textSize="25dp" />
 
         <LinearLayout
@@ -37,7 +40,7 @@
                 android:text="Temperatura" />
 
             <TextView
-                android:id="@+id/TextView02"
+                android:id="@+id/textTemperatura"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="--- °C" />
@@ -54,7 +57,7 @@
                 android:text="Humedad" />
 
             <TextView
-                android:id="@+id/TextView03"
+                android:id="@+id/textHumedad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="----" />
@@ -71,7 +74,7 @@
                 android:text="Presion" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textPresion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="----Bar" />
@@ -84,13 +87,15 @@
         android:background="@drawable/fondo1"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="5dp" >
+        android:padding="5dp"
+         android:layout_margin="2dp" >
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Relays"
+            android:textColor="@color/verdeclaro"
             android:textSize="25dp" />
 
         <TableLayout
@@ -146,31 +151,6 @@
                     android:layout_height="wrap_content"
                     android:text="ToggleButton" />
             </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center" >
-
-                <ToggleButton
-                    android:id="@+id/toggleButton7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ToggleButton" />
-
-                <ToggleButton
-                    android:id="@+id/toggleButton8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ToggleButton" />
-
-                <ToggleButton
-                    android:id="@+id/toggleButton9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ToggleButton" />
-            </TableRow>
         </TableLayout>
 
     </LinearLayout>
@@ -179,7 +159,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/fondo1"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+         android:layout_margin="2dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -192,7 +173,7 @@
                 android:text="Enviar" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/edit_Enviar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -204,12 +185,69 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/text_Echo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blancobs"
             android:text="Echo"
             android:textSize="25dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fondo1"
+        android:orientation="vertical"
+         android:layout_margin="2dp"
+         android:gravity="center" >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Configuracion del Servidor"
+            android:textColor="@color/verdeclaro"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/TextView02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IP" />
+
+            <EditText
+                android:id="@+id/EditText01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:text="192.168.0.153" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Puerto" />
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
