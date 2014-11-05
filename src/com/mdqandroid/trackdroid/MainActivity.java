@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-
+import java.net.*;
+import java.io.*;
 
 public class MainActivity extends Activity {
 
@@ -20,7 +21,7 @@ public class MainActivity extends Activity {
 
 
     private void LevantarXML() {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
