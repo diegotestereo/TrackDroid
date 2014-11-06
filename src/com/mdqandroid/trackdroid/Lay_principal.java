@@ -1,38 +1,51 @@
 package com.mdqandroid.trackdroid;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Lay_principal extends Activity {
 	
-	DataOutputStream Salida;
-	DataInputStream Entrada;
-	Socket socketCliente;
+	 DataOutputStream Salida;
+	 DataInputStream Entrada;
+	//Socket socketCliente;
 	Mensaje_data mdata;
 	Thread ThreadCliente;
-	int puerto;
+	int puerto=5001;
 	Button btn_conectar,btn_EnviarMensaje,btn_Desconectar;
 	EditText edit_ipServer, edit_puerto,edit_mensajeCliente;
 	TextView text_mensajeServer,text_Status;
 	 ObjectOutputStream oos ;
 	 ObjectInputStream ois;
 	 Mensaje_data msgact ;
+	 Socket sk ;
 	
 	
 	
@@ -42,9 +55,9 @@ protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.lay_principal);
 	Levantar_XML();
-
-	Botones();
-	
+ 	Botones();
+ 	  StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.
+ 	           Builder().permitNetwork().build());
 }
 
 private void Botones() {
@@ -52,22 +65,37 @@ private void Botones() {
 		
 		@Override
 		public void onClick(View v) {
-			Connect();
+			try {
+				sk = new Socket("192.168.0.153",5001);
+			} catch (UnknownHostException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			  
 		}
 	} );
 	btn_Desconectar.setOnClickListener(new OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
-			Disconnect();
+			try {
+				sk.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			  
 		}
 	});
 	btn_EnviarMensaje.setOnClickListener(new OnClickListener() {
-		 String mensaje=edit_mensajeCliente.getText().toString();
+		
 		@Override
 		public void onClick(View v) {
-			Snd_txt_Msg(mensaje);
+			String mensaje=edit_mensajeCliente.getText().toString();
+			ejecutaCliente();
 		}
 	});
 	
@@ -88,77 +116,108 @@ private void Levantar_XML() {
 	text_Status=(TextView)findViewById(R.id.text_Status);
 }
 
+private void ejecutaCliente() {
 
-//Conectamos
-	public void Connect() {
-		//Obtengo datos ingresados en campos
-		String IP = edit_ipServer.getText().toString();
-		 puerto = Integer.valueOf(edit_puerto.getText().toString());
+	 //String ip="192.168.0.153";
 
-		try {//creamos sockets con los valores anteriores
-			socketCliente = new Socket("192.168.0.107", 5001);
-			text_Status.setText("Conectado");
-			
-			
-		} catch (Exception e) {
-			text_Status.setText("Error al Conectar");
-			
-		}
-	}
+	// int puerto=5001;
 
+	// log(" socket " + ip + " " + puerto);
 
-//Metodo de desconexion
-public void Disconnect() {
-	try {
+	 try {
 
-		socketCliente.close();
+	// Socket sk = new Socket(ip,puerto);
 
-		text_Status.setText("Desconectado");
-	} catch (Exception e) {
+	 BufferedReader entrada = new BufferedReader(new InputStreamReader(sk.getInputStream()));
 
-		text_Status.setText("error al desconectar");
-	}
+	 PrintWriter salida = new PrintWriter(new OutputStreamWriter(sk.getOutputStream()),true);
 
+	 log("enviando...");
 
-}
+	 salida.println("Hola Mundo");
 
-public void Snd_txt_Msg(String txt) {
+	 log("recibiendo ... " + entrada.readLine());
 
-	Mensaje_data mensaje = new Mensaje_data();
-	//seteo en texto el parametro  recibido por txt
-	mensaje.texto = txt;
-	Snd_Msg(mensaje);
+	 //sk.close();
+
+	 } catch (Exception e) {
+
+	 log("error: " + e.toString());
+
+	 }
+
+	  }
+
+private void log(String string) {
+
+	text_mensajeServer.append(string + "\n");
 	
-}
+
+	  }
+
+/*
+public class MyClientTask extends AsyncTask<Void, Void, Void> {
+	  
+	  String dstAddress;
+	  int dstPort;
+	  String response = "";
+	  
+	  MyClientTask(String addr, int port){
+	   dstAddress = addr;
+	   dstPort = port;
+	  }
+
+	  @Override
+	  protected Void doInBackground(Void... arg0) {
+	   
+	   Socket socket = null;
+	   
+	   try {
+	    socket = new Socket(dstAddress, dstPort);
+	    
+	    ByteArrayOutputStream byteArrayOutputStream = 
+	                  new ByteArrayOutputStream(1024);
+	    byte[] buffer = new byte[1024];
+	    
+	    int bytesRead;
+	    InputStream inputStream = socket.getInputStream();
+	    
+	   
+	             while ((bytesRead = inputStream.read(buffer)) != -1){
+	                 byteArrayOutputStream.write(buffer, 0, bytesRead);
+	                 response += byteArrayOutputStream.toString("UTF-8");
+	             }
+
+	   } catch (UnknownHostException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	    response = "UnknownHostException: " + e.toString();
+	   } catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	    response = "IOException: " + e.toString();
+	   }finally{
+	    if(socket != null){
+	     try {
+	      socket.close();
+	     } catch (IOException e) {
+	      // TODO Auto-generated catch block
+	      e.printStackTrace();
+	     }
+	    }
+	   }
+	   return null;
+	  }
+
+	  @Override
+	  protected void onPostExecute(Void result) {
+	   textResponse.setText(response);
+	   super.onPostExecute(result);
+	  }
+	  
+	 }
+*/
 
 
-public boolean Snd_Msg(Mensaje_data msg) {
-
-	try {
-		//Accedo a flujo de salida
-		oos = new ObjectOutputStream(socketCliente.getOutputStream());
-		
-		Mensaje_data mensaje = new Mensaje_data();
-
-		if (socketCliente.isConnected())// si la conexion continua
-		{
-			//lo asocio al mensaje recibido
-			mensaje = msg;
-			//Envio mensaje por flujo
-			oos.writeObject(mensaje);
-			//envio ok
-			return true;
-
-		} else {//en caso de que no halla conexion al enviar el msg
-			//Set_txtstatus("Error...", 0);//error
-			return false;
-		}
-
-	} catch (IOException e) {// hubo algun error
-		Log.e("Snd_Msg() ERROR -> ", "" + e);
-
-		return false;
 	}
-}
 
-}
