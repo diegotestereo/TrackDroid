@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo1"
+    android:orientation="vertical"
+     android:gravity="center" >
+
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Listado de Dispositivos"
+       
+        android:textSize="25sp" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" 
+            android:padding="10dp">
+
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/btn_disp1"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 1" />
+
+                <Button
+                    android:id="@+id/btn_disp2"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:gravity="center"  >
+
+                <Button
+                    android:id="@+id/btn_disp3"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 3" />
+
+                <Button
+                    android:id="@+id/btn_disp4"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 4" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:gravity="center"  >
+
+                <Button
+                    android:id="@+id/Button07"
+                  style="@style/estilo_dispositivo"
+                    android:text="Dispo 5" />
+
+                <Button
+                    android:id="@+id/Button06"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 6" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout4"
+               android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:gravity="center"  >
+
+                <Button
+                    android:id="@+id/Button03"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 7" />
+
+                <Button
+                    android:id="@+id/Button02"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 8" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:gravity="center"  >
+
+                <Button
+                    android:id="@+id/btn_dispo_12"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 9" />
+
+                <Button
+                    android:id="@+id/Button01"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/Button04"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 11" />
+
+                <Button
+                    android:id="@+id/Button05"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 12" />
+
+            </LinearLayout>
+             <LinearLayout
+                android:id="@+id/LinearLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/Button141"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 13" />
+
+                <Button
+                    android:id="@+id/Button015"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 14" />
+            </LinearLayout>
+             <LinearLayout
+                android:id="@+id/LinearLayout10"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/Button024"
+                   style="@style/estilo_dispositivo"
+                    android:text="Dispo 14" />
+
+                <Button
+                    android:id="@+id/Button12"
+                   style="@style/estilo_dispositivo"
+                    android:text="Dispo 13" />
+            </LinearLayout>
+             <LinearLayout
+                android:id="@+id/LinearLayout12"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/Button034"
+                    style="@style/estilo_dispositivo"
+                    android:text="Dispo 14" />
+
+                <Button
+                    android:id="@+id/Button045"
+                  style="@style/estilo_dispositivo"
+                    android:text="Dispo 13" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
