@@ -11,6 +11,9 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -53,6 +56,10 @@ protected void onCreate(Bundle savedInstanceState) {
  	StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.
  	Builder().permitNetwork().build());
  	scroll_amount=8;
+ 	WifiManager wifiMan = (WifiManager) this.getSystemService(getApplicationContext().WIFI_SERVICE);
+    WifiInfo wifiInf = wifiMan.getConnectionInfo();
+    String macAddr = wifiInf.getMacAddress();
+    text_Status.setText(macAddr);
 }
 
  
