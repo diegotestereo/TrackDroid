@@ -166,8 +166,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/dispositivo"
                     android:layout_margin="2dp"
-                     android:padding="5dp"
-                        android:orientation="vertical" >
+                    android:padding="5dp"
+                    android:orientation="vertical" >
 
                     <TableRow
                         android:id="@+id/tableRow1"
@@ -175,344 +175,28 @@
                         android:layout_height="wrap_content" >
 
                         <CheckBox
-                            android:id="@+id/check_enableA1"
+                            android:id="@+id/CheckBox03"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Analog 1" />
 
-                        <RadioGroup
-                            android:id="@+id/radioGroup3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
-
-                            <RadioButton
-                                android:id="@+id/radioTempA1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Temp" />
-
-                            <RadioButton
-                                android:id="@+id/radioPresionA1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Presion" />
-                        </RadioGroup>
-
-                        <RadioGroup
-                            android:id="@+id/RadioGroup04"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
-
-                            <RadioButton
-                                android:id="@+id/radio40to40A1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="-40°C -> 40°C" />
-
-                            <RadioButton
-                                android:id="@+id/radio0to40A1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="  0°C -> 40°C" />
-
-                            <RadioButton
-                                android:id="@+id/radio0to250A1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="  0°C -> 250°C" />
-                        </RadioGroup>
-                    </TableRow>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" >
-
                         <CheckBox
-                            android:id="@+id/check_alarmaA1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Alarma 1" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
-
-                            <SeekBar
-                                android:id="@+id/seekBarA1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:max="1023" />
-
-                            <TextView
-                                android:id="@+id/text_valorBar1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:textSize="16dp" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/dispositivo"
-                     android:layout_margin="2dp"
-                      android:padding="5dp"
-                    android:orientation="vertical" >
-
-                    <TableRow
-                        android:id="@+id/tableRow2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
-
-                        <CheckBox
-                            android:id="@+id/Check_enableA2"
+                            android:id="@+id/CheckBox02"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Analog 2" />
 
-                        <RadioGroup
-                            android:id="@+id/RadioGroup01"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
-
-                            <RadioButton
-                                android:id="@+id/radioTempA2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Temp" />
-
-                            <RadioButton
-                                android:id="@+id/radioPresionA2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Presion" />
-                        </RadioGroup>
-
-                        <RadioGroup
-                            android:id="@+id/RadioGroup05"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
-
-                            <RadioButton
-                                android:id="@+id/radio40to40A2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="-40°C -> 40°C" />
-
-                            <RadioButton
-                                android:id="@+id/radio0to40A2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="  0°C -> 40°C" />
-
-                            <RadioButton
-                                android:id="@+id/radio0to250A2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="  0°C -> 250°C" />
-                        </RadioGroup>
-                    </TableRow>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" >
-
                         <CheckBox
-                            android:id="@+id/check_enableA2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Alarma 2" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
-
-                            <SeekBar
-                                android:id="@+id/seekBarA2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:max="1023" />
-
-                            <TextView
-                                android:id="@+id/text_valorBar2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:textSize="16dp" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/dispositivo"
-                     android:layout_margin="2dp"
-                      android:padding="5dp"
-                    android:orientation="vertical" >
-
-                    <TableRow
-                        android:id="@+id/tableRow3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
-
-                        <CheckBox
-                            android:id="@+id/Check_enableA3"
+                            android:id="@+id/CheckBox01"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Analog 3" />
 
-                        <RadioGroup
-                            android:id="@+id/RadioGroup02"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
-
-                            <RadioButton
-                                android:id="@+id/radioTempA3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Temp" />
-
-                            <RadioButton
-                                android:id="@+id/radioPresionA3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Presion" />
-                        </RadioGroup>
-
-                        <RadioGroup
-                            android:id="@+id/RadioGroup07"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
-
-                            <RadioButton
-                                android:id="@+id/radio40to40A3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="-40°C -> 40°C" />
-
-                            <RadioButton
-                                android:id="@+id/radio0to40A3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="  0°C -> 40°C" />
-
-                            <RadioButton
-                                android:id="@+id/radio0to250A3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="  0°C -> 250°C" />
-                        </RadioGroup>
-                    </TableRow>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" >
-
                         <CheckBox
-                            android:id="@+id/check_enableA3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Alarma 3" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
-
-                            <SeekBar
-                                android:id="@+id/seekBar3"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:max="1023" />
-
-                            <TextView
-                                android:id="@+id/text_valorBar3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:textSize="16dp" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/dispositivo"
-                    android:layout_margin="2dp"
-                    android:padding="5dp"
-                    android:orientation="vertical" >
-
-                    <TableRow
-                        android:id="@+id/tableRow4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
-
-                        <CheckBox
-                            android:id="@+id/Check_enableA4"
+                            android:id="@+id/check_enableA1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Analog 4" />
-
-                        <RadioGroup
-                            android:id="@+id/RadioGroup03"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
-
-                            <RadioButton
-                                android:id="@+id/radioTempA4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Temp" />
-
-                            <RadioButton
-                                android:id="@+id/radioPresionA4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Presion" />
-                        </RadioGroup>
-
-                        <RadioGroup
-                            android:id="@+id/RadioGroup06"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
-
-                            <RadioButton
-                                android:id="@+id/radio40to40A4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="-40°C -> 40°C" />
-
-                            <RadioButton
-                                android:id="@+id/radio0to40A4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="  0°C -> 40°C" />
-
-                            <RadioButton
-                                android:id="@+id/radio0to250A4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="  0°C -> 250°C" />
-                        </RadioGroup>
-
                     </TableRow>
 
                     <LinearLayout
@@ -520,30 +204,6 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
-                        <CheckBox
-                            android:id="@+id/check_enableA4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Alarma 4" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
-
-                            <SeekBar
-                                android:id="@+id/seekBar4"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1" />
-
-                            <TextView
-                                android:id="@+id/text_valorBar4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:textSize="16dp" />
-
-                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -552,12 +212,15 @@
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:background="@drawable/dispositivo" 
+                android:layout_gravity="center">
 
                 <TableRow
                     android:id="@+id/tableRow5"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content" 
+                    android:layout_gravity="center">
 
                     <CheckBox
                         android:id="@+id/checkRelay1"
