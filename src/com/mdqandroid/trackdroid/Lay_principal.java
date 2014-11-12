@@ -30,9 +30,9 @@ public class Lay_principal extends Activity {
 		 
 	 BufferedReader entrada ;
 	 PrintWriter salida ;
-	// String mensaje;
+	String mensajeExit="";
 	//Socket socketCliente;
-	Mensaje_data mdata;
+	
 	Thread ThreadCliente;
 	int puerto=5001;
 	Button btn_conectar,btn_EnviarMensaje,btn_Desconectar;
@@ -40,10 +40,11 @@ public class Lay_principal extends Activity {
 	TextView text_mensajeServer,text_Status;
 	 ObjectOutputStream oos ;
 	 ObjectInputStream ois;
-	 Mensaje_data msgact ;
+	
 	 Socket sk ;
 	// clienteAsync Cliente;
 	int scroll_amount;
+	Boolean ExitSocket=false;
 	
 	
  @Override
@@ -95,13 +96,13 @@ protected void onCreate(Bundle savedInstanceState) {
     protected void onPause() {
     	// TODO Auto-generated method stub
     	super.onPause();
-    	try {
-			sk.close();
-			Toast.makeText(getApplicationContext(), "On Pause... Desconectado ", Toast.LENGTH_SHORT).show();
-		} catch (IOException e) {
+    //	try {
+			//sk.close();
+			//Toast.makeText(getApplicationContext(), "On Pause... Desconectado ", Toast.LENGTH_SHORT).show();
+	//	} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+	//	}
     }
  
  
@@ -135,19 +136,9 @@ protected void onCreate(Bundle savedInstanceState) {
 		
 		@Override
 		public void onClick(View v) {
-			try {
-				sk.close();
-				btn_Desconectar.setEnabled(false);
-				btn_conectar.setEnabled(true);
-				btn_EnviarMensaje.setEnabled(false);
-				text_Status.setText("Desconectado");
-				edit_ipServer.setEnabled(true);
-				edit_puerto.setEnabled(true);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			  
+			String mensaje="q";
+			mensajeExit=mensaje;
+			 
 		}
 	});
 	btn_EnviarMensaje.setOnClickListener(new OnClickListener() {
@@ -155,10 +146,13 @@ protected void onCreate(Bundle savedInstanceState) {
 		@Override
 		public void onClick(View v) {
 			String mensaje=edit_mensajeCliente.getText().toString();
-			
+			mensajeExit=mensaje;
 		//	ejecutaCliente();
 			clienteAsync Cliente = new clienteAsync();
 			Cliente.execute(mensaje);
+		
+			
+			
 		}
 	});
 	
@@ -179,7 +173,7 @@ protected void onCreate(Bundle savedInstanceState) {
 	text_Status=(TextView)findViewById(R.id.text_Status);
 }
 
-	public class clienteAsync extends AsyncTask<String, Void,Void>{
+	public class clienteAsync extends AsyncTask<String, Boolean,Void>{
 	
 	protected void onPreExecute(Void arg0) {
 	   super.onPreExecute();
@@ -195,6 +189,8 @@ protected void onCreate(Bundle savedInstanceState) {
 				 salida = new PrintWriter(new OutputStreamWriter(sk.getOutputStream()),true);
 				
 				 salida.println(mensajito);
+				
+				
 	 } catch (Exception e) {
 		 try {
 			text_mensajeServer.append(entrada.readLine() + "\n");
@@ -210,10 +206,24 @@ protected void onCreate(Bundle savedInstanceState) {
 			e1.printStackTrace();
 		}
 				 }
+		 
+	 
 		return null;
 	}
 	
-	
+   protected Boolean onProgressUpdate() {
+		// TODO Auto-generated method stub
+		super.onProgressUpdate();
+		
+		if(mensajeExit.equals("exit")){
+			ExitSocket=true;
+			}else{ExitSocket=false;}
+		
+		return ExitSocket;
+		
+		
+		
+	}
 	
 	@Override
 	  protected void onPostExecute(Void result) {
@@ -221,11 +231,32 @@ protected void onCreate(Bundle savedInstanceState) {
 	   super.onPostExecute(result);
 	  try {
 		text_mensajeServer.append(entrada.readLine() + "\n");
+	
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	  
+		if(mensajeExit.equals("q")){
+			try {
+				sk.close();
+				btn_Desconectar.setEnabled(false);
+				btn_conectar.setEnabled(true);
+				btn_EnviarMensaje.setEnabled(false);
+				text_Status.setText("Desconectado");
+				edit_ipServer.setEnabled(true);
+				edit_puerto.setEnabled(true);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
+	
+	  
+	  
 	  }
+	
 
 
 	
