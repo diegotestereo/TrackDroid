@@ -11,7 +11,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import android.app.Activity;
-import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -69,26 +68,7 @@ protected void onCreate(Bundle savedInstanceState) {
 	// TODO Auto-generated method stub
 	super.onResume();
 	
-	Toast.makeText(getApplicationContext(), "on Resume", Toast.LENGTH_SHORT).show();
-/*	String IpServidor =edit_ipServer.getText().toString();
-	int puertito=Integer.parseInt(edit_puerto.getText().toString());
 	
-	try {
-		sk = new Socket(IpServidor,puertito);
-	//	btn_Desconectar.setEnabled(true);
-	//	btn_conectar.setEnabled(false);
-	//	btn_EnviarMensaje.setEnabled(true);
-		text_Status.setText("Conectado a:"+IpServidor+":"+puertito);
-	//	edit_ipServer.setEnabled(false);
-	//	edit_puerto.setEnabled(false);
-	} catch (UnknownHostException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}*/
-
 }
     
  
@@ -96,13 +76,7 @@ protected void onCreate(Bundle savedInstanceState) {
     protected void onPause() {
     	// TODO Auto-generated method stub
     	super.onPause();
-    //	try {
-			//sk.close();
-			//Toast.makeText(getApplicationContext(), "On Pause... Desconectado ", Toast.LENGTH_SHORT).show();
-	//	} catch (IOException e) {
-			// TODO Auto-generated catch block
-		//	e.printStackTrace();
-	//	}
+    
     }
  
  
@@ -165,8 +139,8 @@ protected void onCreate(Bundle savedInstanceState) {
 	btn_EnviarMensaje=(Button) findViewById(R.id.btn_EnviarMensaje);
 	btn_Desconectar=(Button) findViewById(R.id.btn_Desconectar);
 	
-	edit_ipServer=(EditText)findViewById(R.id.edit_IPServer);
-	edit_puerto=(EditText)findViewById(R.id.edit_Puerto);
+	edit_ipServer=(EditText)findViewById(R.id.edit_IPServer1);
+	edit_puerto=(EditText)findViewById(R.id.edit_Puerto1);
 	edit_mensajeCliente=(EditText)findViewById(R.id.edit_MensajeCliente);
 	
 	text_mensajeServer=(TextView)findViewById(R.id.text_MensajeServer);

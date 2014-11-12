@@ -1,30 +1,67 @@
 package com.mdqandroid.trackdroid;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.Button;
+import android.widget.Toast;
+
 import java.net.*;
 import java.io.*;
 
 public class MainActivity extends Activity {
+	Button bton_disp1,bton_disp2;
+	 final Context context = this;
+	 
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	// TODO Auto-generated method stub
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_main);
+	LevantarXML();
+	botones();
+}
 
-	Button btn_Enviar ;
+private void botones() {
+	bton_disp1.setOnClickListener(new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			Intent intento = new Intent(MainActivity.this,Lay_Dispositivo.class);
+			startActivity(intento);
+		}
+	});
 	
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        LevantarXML();
-    }
-
-
-    private void LevantarXML() {
-	
+	bton_disp1.setOnLongClickListener(new OnLongClickListener() {
 		
-	}
+		@Override
+		public boolean onLongClick(View v) {
+			Intent intento = new Intent(MainActivity.this,Lay_Preferencias.class);
+			startActivity(intento);
+			return false;
+		}
+	});
+	
+bton_disp2.setOnLongClickListener(new OnLongClickListener() {
+		
+		@Override
+		public boolean onLongClick(View v) {
+			return false;
+		}
+	});
+	
+}
 
+private void LevantarXML() {
+	bton_disp1=(Button) findViewById(R.id.btn_disp1);
+	bton_disp2=(Button) findViewById(R.id.btn_disp2);
+	
+}
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {

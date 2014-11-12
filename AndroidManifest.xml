@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Lay_dispositivos"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+
          <activity android:name=".Lay_principal"></activity>
+          <activity android:name=".Lay_Dispositivo"></activity>
+           <activity android:name=".Lay_Preferencias"></activity>
     </application>
 
 </manifest>
