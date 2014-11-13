@@ -50,16 +50,14 @@ public class Lay_principal extends Activity {
 protected void onCreate(Bundle savedInstanceState) {
 	// TODO Auto-generated method stub
 	super.onCreate(savedInstanceState);
-	setContentView(R.layout.lay_principal);
+	setContentView(R.layout.lay_dispositivo);
 	Levantar_XML();
  	Botones();
  	StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.
  	Builder().permitNetwork().build());
  	scroll_amount=8;
- 	WifiManager wifiMan = (WifiManager) this.getSystemService(getApplicationContext().WIFI_SERVICE);
-    WifiInfo wifiInf = wifiMan.getConnectionInfo();
-    String macAddr = wifiInf.getMacAddress();
-    text_Status.setText(macAddr);
+ 	
+   
 }
 
  
@@ -135,16 +133,16 @@ protected void onCreate(Bundle savedInstanceState) {
 
 	private void Levantar_XML() {
 	
-	btn_conectar=(Button) findViewById(R.id.btn_Conectar);
+	//btn_conectar=(Button) findViewById(R.id.btn_Conectar);
 	btn_EnviarMensaje=(Button) findViewById(R.id.btn_EnviarMensaje);
-	btn_Desconectar=(Button) findViewById(R.id.btn_Desconectar);
+//	btn_Desconectar=(Button) findViewById(R.id.btn_Desconectar);
 	
-	edit_ipServer=(EditText)findViewById(R.id.edit_IPServer1);
-	edit_puerto=(EditText)findViewById(R.id.edit_Puerto1);
+	edit_ipServer=(EditText)findViewById(R.id.edit_IPServer);
+	//edit_puerto=(EditText)findViewById(R.id.edit_Puerto1);
 	edit_mensajeCliente=(EditText)findViewById(R.id.edit_MensajeCliente);
 	
 	text_mensajeServer=(TextView)findViewById(R.id.text_MensajeServer);
-	text_Status=(TextView)findViewById(R.id.text_Status);
+	//text_Status=(TextView)findViewById(R.id.text_Status);
 }
 
 	public class clienteAsync extends AsyncTask<String, Boolean,Void>{

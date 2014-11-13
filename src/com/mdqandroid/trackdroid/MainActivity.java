@@ -41,16 +41,23 @@ private void botones() {
 		
 		@Override
 		public boolean onLongClick(View v) {
-			Intent intento = new Intent(MainActivity.this,Lay_Preferencias.class);
+			Intent intento = new Intent(MainActivity.this,Lay_Configuracion.class);
+			int Disp=1;
+			intento.putExtra("Nombre", Disp);
 			startActivity(intento);
+			
 			return false;
 		}
 	});
 	
-bton_disp2.setOnLongClickListener(new OnLongClickListener() {
+	bton_disp2.setOnLongClickListener(new OnLongClickListener() {
 		
 		@Override
 		public boolean onLongClick(View v) {
+			Intent intento = new Intent(MainActivity.this,Lay_Configuracion.class);
+			int Disp=2;
+			intento.putExtra("Nombre", Disp);
+			startActivity(intento);
 			return false;
 		}
 	});

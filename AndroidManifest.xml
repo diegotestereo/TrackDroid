@@ -26,9 +26,9 @@
             </intent-filter>
         </activity>
 
-         <activity android:name=".Lay_principal"></activity>
+         
           <activity android:name=".Lay_Dispositivo"></activity>
-           <activity android:name=".Lay_Preferencias"></activity>
+           <activity android:name=".Lay_Configuracion"></activity>
     </application>
 
 </manifest>
