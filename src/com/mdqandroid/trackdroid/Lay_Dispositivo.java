@@ -34,7 +34,7 @@ public class Lay_Dispositivo extends Activity{
 	
 	Thread ThreadCliente;
 	int puerto=5001;
-	Button btn_conectar,btn_EnviarMensaje,btn_Desconectar;
+	Button btn_conectar,btn_EnviarMensaje,btn_Desconectar,btn_Prueba;
 	EditText edit_ipServer, edit_puerto,edit_mensajeCliente;
 	TextView text_mensajeServer,text_Status,textA1,textA2,textA3,textA4,textPrueba;
 	ToggleButton toggleR1,toggleR2,toggleR3,toggleR4,toggleR5,toggleR6,toggleR7,toggleR8;
@@ -125,9 +125,20 @@ public class Lay_Dispositivo extends Activity{
 	protected void onPause() {
 	    	
 	    	super.onPause();
+	    	clienteAsync Cliente = new clienteAsync();
+			Cliente.execute("q");
+			Toast.makeText(getApplicationContext(), "Se desconecto...", Toast.LENGTH_LONG).show();
+			finish();
 	    
 	    }
 	    
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		finish();
+		
+	}
 	private void Botones() {
 	    	btn_conectar.setOnClickListener(new OnClickListener() {
 	    		@Override
@@ -165,6 +176,16 @@ public class Lay_Dispositivo extends Activity{
 	    		}
 	    	});
 	    	
+	    	
+	    	btn_Prueba.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					DecodificaMensaje decomsg= new DecodificaMensaje();
+					decomsg.execute("t11024");
+				}
+			});
 	    }
 
 	
@@ -276,9 +297,9 @@ public class Lay_Dispositivo extends Activity{
 		    	
 		    	protected Void doInBackground(String... msg) {
 		    		
-		    		 String selector =msg.toString();
+		    		 String selector =msg[0];
 		    		  Log.d("DecodificaMensaje", "Selector"+selector);
-		    		 DecoTipo = selector.substring(0,1);
+		    		 DecoTipo = selector.substring(0,2);
 		    		 Log.d("DecodificaMensaje", "DecoTipo"+DecoValor);
 			    		
 		    		 if(selector.substring(0).equals("r")){
@@ -286,7 +307,7 @@ public class Lay_Dispositivo extends Activity{
 		    			 if(DecoValor.equals("1")){DecoRelay=true;}
 		    			 else{DecoRelay=false;}
 		    		 }else{
-		    		DecoValor = selector.substring(3,6);}
+		    		DecoValor = selector.substring(2,6);}
 		    		  Log.d("DecodificaMensaje", "Decovalor"+DecoValor);
 		    		
 		    		return null;
@@ -308,10 +329,10 @@ public class Lay_Dispositivo extends Activity{
 		    	  protected void onPostExecute(Void result) {
 		    	   
 		    	   super.onPostExecute(result);
-
+		    	   Toast.makeText(getApplicationContext(), DecoTipo, Toast.LENGTH_SHORT).show();
 		    		switch (DecoTipo) {
 					case "t1":textA1.setText(DecoValor);
-						         
+						         Toast.makeText(getApplicationContext(), DecoTipo, Toast.LENGTH_SHORT).show();
 						break;
 					case "t2":textA2.setText(DecoValor);
 						
@@ -363,6 +384,8 @@ public class Lay_Dispositivo extends Activity{
 	    	btn_conectar=(Button) findViewById(R.id.btn_Conectar);
 	    	btn_EnviarMensaje=(Button) findViewById(R.id.btn_EnviarMensaje);
 	    	btn_Desconectar=(Button) findViewById(R.id.btn_Desconectar);
+	    	btn_Prueba=(Button) findViewById(R.id.btn_Prueba);
+	    	
 	    	
 	    	edit_ipServer=(EditText)findViewById(R.id.edit_IPServer);
 	    	edit_puerto=(EditText)findViewById(R.id.edit_puerto);
