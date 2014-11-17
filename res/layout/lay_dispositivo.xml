@@ -75,6 +75,7 @@
                     android:id="@+id/btn_Desconectar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:text="Desconectar" />
 
                 <TextView
@@ -109,7 +110,9 @@
                     android:id="@+id/btn_EnviarMensaje"
                     android:layout_width="96dp"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:text="Enviar" />
+
             </LinearLayout>
 
             <LinearLayout

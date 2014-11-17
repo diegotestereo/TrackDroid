@@ -60,15 +60,13 @@ public class Lay_Dispositivo extends Activity{
 		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
 		Levantar_XML();
 		//sb= new StringBuilder();
-		
 		Botones();
-		Log.d("HolaMundo","Entramos en onCreate");
+		conectar();
+		 
 	}
 
 	private void desconectar(){
-	/*	mensajeExit="q";
-		clienteAsync Cliente = new clienteAsync();
-		Cliente.execute("q");*/
+	
 		try {
 			sk.close();
 			btn_Desconectar.setEnabled(false);
@@ -77,11 +75,15 @@ public class Lay_Dispositivo extends Activity{
 			text_Status.setText("Desconectado");
 			edit_ipServer.setEnabled(true);
 			edit_puerto.setEnabled(true);
-		} catch (IOException e) {
+		}catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			Toast.makeText(getApplicationContext(), "No se pudo Desconectar del dispositivo", Toast.LENGTH_LONG).show();
-			
+			Toast.makeText(getApplicationContext(), "No se pudo Desconectar al dispositivo", Toast.LENGTH_LONG).show();
+		}  
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
 		}
 	}
 	
@@ -97,14 +99,18 @@ public class Lay_Dispositivo extends Activity{
 				text_Status.setText("Conectado a:"+IpServidor+":"+puertito);
 				edit_ipServer.setEnabled(false);
 				edit_puerto.setEnabled(false);
+				Toast.makeText(getApplicationContext(), "Conectado Satisfactoriamente !!!", Toast.LENGTH_LONG).show();
+				
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				Toast.makeText(getApplicationContext(), "No se pudo conectar al dispositivo", Toast.LENGTH_LONG).show();
+				finish();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				Toast.makeText(getApplicationContext(), "No se pudo conectar al dispositivo", Toast.LENGTH_LONG).show();
+				finish();
 			}
 	}
 
@@ -136,13 +142,13 @@ public class Lay_Dispositivo extends Activity{
 	    		
 	    		@Override
 	    		public void onClick(View v) {
-	    		//	String mensaje="q";
-	    			//mensajeExit=mensaje;
+	    	
+	   	    	// desconectar();
 	    			
-	   	    	 desconectar();
-	   	    
-	    			 
-	    		}
+	    			clienteAsync Cliente = new clienteAsync();
+	    			Cliente.execute("q");
+	    		
+	   	}
 	    	});
 	    	btn_EnviarMensaje.setOnClickListener(new OnClickListener() {
 	    		
@@ -161,34 +167,7 @@ public class Lay_Dispositivo extends Activity{
 	    	
 	    }
 
-	private void Levantar_XML() {
-	    	
-	    	btn_conectar=(Button) findViewById(R.id.btn_Conectar);
-	    	btn_EnviarMensaje=(Button) findViewById(R.id.btn_EnviarMensaje);
-	    	btn_Desconectar=(Button) findViewById(R.id.btn_Desconectar);
-	    	
-	    	edit_ipServer=(EditText)findViewById(R.id.edit_IPServer);
-	    	edit_puerto=(EditText)findViewById(R.id.edit_puerto);
-	    	edit_mensajeCliente=(EditText)findViewById(R.id.edit_MensajeCliente);
-	    	text_mensajeServer=(TextView)findViewById(R.id.text_MensajeServer);
-	    	text_Status=(TextView)findViewById(R.id.textStatus);
-	    	textPrueba=(TextView)findViewById(R.id.textPrueba);
-	    	
-	    	textA1=(TextView)findViewById(R.id.textA1);
-	    	textA2=(TextView)findViewById(R.id.textA2);
-	    	textA3=(TextView)findViewById(R.id.textA3);
-	    	textA4=(TextView)findViewById(R.id.textA4);
-	    	
-	    	toggleR1=(ToggleButton)findViewById(R.id.toggleR1);
-	    	toggleR2=(ToggleButton)findViewById(R.id.toggleR2);
-	    	toggleR3=(ToggleButton)findViewById(R.id.toggleR3);
-	    	toggleR4=(ToggleButton)findViewById(R.id.toggleR4);
-	    	toggleR5=(ToggleButton)findViewById(R.id.toggleR5);
-	    	toggleR6=(ToggleButton)findViewById(R.id.toggleR6);
-	    	toggleR7=(ToggleButton)findViewById(R.id.toggleR7);
-	    	toggleR8=(ToggleButton)findViewById(R.id.toggleR8);
-	    	
-	    }
+	
 
 	public class clienteAsync extends AsyncTask<String, Void,Void>{
 	    	
@@ -264,7 +243,7 @@ public class Lay_Dispositivo extends Activity{
 	    		e.printStackTrace();
 	    	}
 	    	  
-	    		/*if(mensajeExit.equals("q")){
+	    		if(mensajeExit.equals("q")){
 	    			try {
 	    				sk.close();
 	    				btn_Desconectar.setEnabled(false);
@@ -277,7 +256,7 @@ public class Lay_Dispositivo extends Activity{
 	    				// TODO Auto-generated catch block
 	    				e.printStackTrace();
 	    			}
-	    		}*/
+	    		}
 	    	
           //     Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_SHORT).show();
 	    	  }
@@ -379,7 +358,34 @@ public class Lay_Dispositivo extends Activity{
 		    	
 		    }
 	    
-	  
+	 private void Levantar_XML() {
+	    	
+	    	btn_conectar=(Button) findViewById(R.id.btn_Conectar);
+	    	btn_EnviarMensaje=(Button) findViewById(R.id.btn_EnviarMensaje);
+	    	btn_Desconectar=(Button) findViewById(R.id.btn_Desconectar);
+	    	
+	    	edit_ipServer=(EditText)findViewById(R.id.edit_IPServer);
+	    	edit_puerto=(EditText)findViewById(R.id.edit_puerto);
+	    	edit_mensajeCliente=(EditText)findViewById(R.id.edit_MensajeCliente);
+	    	text_mensajeServer=(TextView)findViewById(R.id.text_MensajeServer);
+	    	text_Status=(TextView)findViewById(R.id.textStatus);
+	    	textPrueba=(TextView)findViewById(R.id.textPrueba);
+	    	
+	    	textA1=(TextView)findViewById(R.id.textA1);
+	    	textA2=(TextView)findViewById(R.id.textA2);
+	    	textA3=(TextView)findViewById(R.id.textA3);
+	    	textA4=(TextView)findViewById(R.id.textA4);
+	    	
+	    	toggleR1=(ToggleButton)findViewById(R.id.toggleR1);
+	    	toggleR2=(ToggleButton)findViewById(R.id.toggleR2);
+	    	toggleR3=(ToggleButton)findViewById(R.id.toggleR3);
+	    	toggleR4=(ToggleButton)findViewById(R.id.toggleR4);
+	    	toggleR5=(ToggleButton)findViewById(R.id.toggleR5);
+	    	toggleR6=(ToggleButton)findViewById(R.id.toggleR6);
+	    	toggleR7=(ToggleButton)findViewById(R.id.toggleR7);
+	    	toggleR8=(ToggleButton)findViewById(R.id.toggleR8);
+	    	
+	    }
 	    
 	
 }
