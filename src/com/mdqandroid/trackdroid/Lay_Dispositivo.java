@@ -50,7 +50,7 @@ public class Lay_Dispositivo extends Activity{
 	Boolean ExitSocket=false;
 	
 	
-	StringBuilder sb ;
+	//StringBuilder sb ;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,16 +59,30 @@ public class Lay_Dispositivo extends Activity{
 		setContentView(R.layout.lay_dispositivo);
 		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
 		Levantar_XML();
-		sb= new StringBuilder();
+		//sb= new StringBuilder();
 		
 		Botones();
-		 Log.d("HolaMundo","Entramos en onCreate");
+		Log.d("HolaMundo","Entramos en onCreate");
 	}
 
 	private void desconectar(){
-		mensajeExit="q";
+	/*	mensajeExit="q";
 		clienteAsync Cliente = new clienteAsync();
-		Cliente.execute("q");
+		Cliente.execute("q");*/
+		try {
+			sk.close();
+			btn_Desconectar.setEnabled(false);
+			btn_conectar.setEnabled(true);
+			btn_EnviarMensaje.setEnabled(false);
+			text_Status.setText("Desconectado");
+			edit_ipServer.setEnabled(true);
+			edit_puerto.setEnabled(true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Toast.makeText(getApplicationContext(), "No se pudo Desconectar del dispositivo", Toast.LENGTH_LONG).show();
+			
+		}
 	}
 	
 	private void conectar() {
@@ -98,7 +112,6 @@ public class Lay_Dispositivo extends Activity{
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		conectar();
 	
 		}
 		 
@@ -106,26 +119,28 @@ public class Lay_Dispositivo extends Activity{
 	protected void onPause() {
 	    	
 	    	super.onPause();
-	    	
-	    	 desconectar();
 	    
 	    }
 	    
 	private void Botones() {
-	    	/*btn_conectar.setOnClickListener(new OnClickListener() {
+	    	btn_conectar.setOnClickListener(new OnClickListener() {
 	    		@Override
 	    		public void onClick(View v) {
 	    			
+	    			conectar();
 	    			
 	    		}
-	    	} );*/
+	    	} );
 	    	
 	    	btn_Desconectar.setOnClickListener(new OnClickListener() {
 	    		
 	    		@Override
 	    		public void onClick(View v) {
-	    			String mensaje="q";
-	    			mensajeExit=mensaje;
+	    		//	String mensaje="q";
+	    			//mensajeExit=mensaje;
+	    			
+	   	    	 desconectar();
+	   	    
 	    			 
 	    		}
 	    	});
@@ -135,7 +150,7 @@ public class Lay_Dispositivo extends Activity{
 	    		public void onClick(View v) {
 	    			String mensaje=edit_mensajeCliente.getText().toString();
 	    			mensajeExit=mensaje;
-	    		
+	    			Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
 	    			clienteAsync Cliente = new clienteAsync();
 	    			Cliente.execute(mensaje);
 	    		
@@ -185,15 +200,15 @@ public class Lay_Dispositivo extends Activity{
 	    	
 	    	protected Void doInBackground(String... msg) {
 	    		 String mensajito =msg[0];
-	    		 String Line="";
+	    		// String Line="";
 	    		 
 	    		 try {
 	    			 	 entrada = new BufferedReader(new InputStreamReader(sk.getInputStream()));
-	    			 	 Line=entrada.readLine();
-	    			 	 sb.append(Line);
+	    			 	// Line=entrada.readLine();
+	    			// 	 sb.append(Line);
 	    				 salida = new PrintWriter(new OutputStreamWriter(sk.getOutputStream()),true);
 	    				
-	    				 salida.println(mensajito);
+	    				 salida.println(mensajito);// envia el mensaje
 	    				
 	    				
 	    	 } catch (Exception e) {
@@ -216,7 +231,7 @@ public class Lay_Dispositivo extends Activity{
 	    		 return null;
 	    	}
 	    	
-	       protected Boolean onProgressUpdate() {
+	       /*protected Boolean onProgressUpdate() {
 	    		// TODO Auto-generated method stub
 	    		super.onProgressUpdate();
 	    		
@@ -235,7 +250,7 @@ public class Lay_Dispositivo extends Activity{
 	    	
 	    		
 	    		
-	    	}
+	    	}*/
 	    	
 	    	@Override
 	      protected void onPostExecute(Void result) {
@@ -249,7 +264,7 @@ public class Lay_Dispositivo extends Activity{
 	    		e.printStackTrace();
 	    	}
 	    	  
-	    		if(mensajeExit.equals("q")){
+	    		/*if(mensajeExit.equals("q")){
 	    			try {
 	    				sk.close();
 	    				btn_Desconectar.setEnabled(false);
@@ -262,7 +277,7 @@ public class Lay_Dispositivo extends Activity{
 	    				// TODO Auto-generated catch block
 	    				e.printStackTrace();
 	    			}
-	    		}
+	    		}*/
 	    	
           //     Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_SHORT).show();
 	    	  }
@@ -270,7 +285,7 @@ public class Lay_Dispositivo extends Activity{
 	    	
 	    }
 
-	public class DecodificaMensaje extends AsyncTask<String, Void,Void>{
+	 public class DecodificaMensaje extends AsyncTask<String, Void,Void>{
 		    	
 		    	protected void onPreExecute(Void arg0) {
 		    	   super.onPreExecute();
@@ -364,7 +379,7 @@ public class Lay_Dispositivo extends Activity{
 		    	
 		    }
 	    
-	    
+	  
 	    
 	
 }
