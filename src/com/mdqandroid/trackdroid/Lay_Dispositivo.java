@@ -29,7 +29,7 @@ public class Lay_Dispositivo extends Activity{
 	 
 	 BufferedReader entrada ;
 	 PrintWriter salida ;
-	String mensajeExit="";
+	String mensajeExit="",SelectorGlobal=null;
 	//Socket socketCliente;
 	
 	Thread ThreadCliente;
@@ -183,7 +183,7 @@ public class Lay_Dispositivo extends Activity{
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					DecodificaMensaje decomsg= new DecodificaMensaje();
-					decomsg.execute("t11024");
+					decomsg.execute(edit_mensajeCliente.getText().toString());
 				}
 			});
 	    }
@@ -298,17 +298,17 @@ public class Lay_Dispositivo extends Activity{
 		    	protected Void doInBackground(String... msg) {
 		    		
 		    		 String selector =msg[0];
-		    		  Log.d("DecodificaMensaje", "Selector"+selector);
+		    		 SelectorGlobal=msg[0];
 		    		 DecoTipo = selector.substring(0,2);
-		    		 Log.d("DecodificaMensaje", "DecoTipo"+DecoValor);
-			    		
-		    		 if(selector.substring(0).equals("r")){
-		    			 DecoValor = selector.substring(3,3);
-		    			 if(DecoValor.equals("1")){DecoRelay=true;}
-		    			 else{DecoRelay=false;}
+		    		
+		    		 if(selector.substring(0,1).equals("r")){
+		    			 DecoValor = selector.substring(3,4);
+		    			 if(DecoValor.equals("1"))
+		    			 {DecoRelay=true;}
+		    			 else{
+		    				 DecoRelay=false;}
 		    		 }else{
-		    		DecoValor = selector.substring(2,6);}
-		    		  Log.d("DecodificaMensaje", "Decovalor"+DecoValor);
+		    		DecoValor = selector.substring(3,selector.length());}
 		    		
 		    		return null;
 		    	}
@@ -329,11 +329,9 @@ public class Lay_Dispositivo extends Activity{
 		    	  protected void onPostExecute(Void result) {
 		    	   
 		    	   super.onPostExecute(result);
-		    	   Toast.makeText(getApplicationContext(), DecoTipo, Toast.LENGTH_SHORT).show();
-		    		switch (DecoTipo) {
+		    	switch (DecoTipo) {
 					case "t1":textA1.setText(DecoValor);
-						         Toast.makeText(getApplicationContext(), DecoTipo, Toast.LENGTH_SHORT).show();
-						break;
+						         	break;
 					case "t2":textA2.setText(DecoValor);
 						
 						break;
@@ -367,9 +365,8 @@ public class Lay_Dispositivo extends Activity{
 					case "r8":toggleR8.setChecked(DecoRelay);
 						
 						break;
-
-
 					default:
+						Toast.makeText(getApplicationContext(), "Error comando", Toast.LENGTH_SHORT).show();
 						break;
 					}
 

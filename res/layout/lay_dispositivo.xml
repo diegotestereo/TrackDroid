@@ -147,7 +147,7 @@
                         android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sensor 1:" />
+                        android:text="Sensor 1: " />
 
                     <TextView
                         android:id="@+id/textA1"
@@ -159,7 +159,7 @@
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sensor 2" />
+                        android:text="Sensor 2: " />
 
                     <TextView
                         android:id="@+id/textA2"
@@ -177,7 +177,7 @@
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sensor 3:" />
+                        android:text="Sensor 3: " />
 
                     <TextView
                         android:id="@+id/textA3"
@@ -189,7 +189,7 @@
                         android:id="@+id/textView8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sensor 4:" />
+                        android:text="Sensor 4: " />
 
                     <TextView
                         android:id="@+id/textA4"
