@@ -9,7 +9,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.TooManyListenersException;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -233,14 +232,13 @@ public class Lay_Dispositivo extends Activity{
 	    		return ExitSocket;
 	    		
 	    		
-	    		
-	    		return null;
+	    	
 	    		
 	    		
 	    	}
 	    	
 	    	@Override
-	    	  protected void onPostExecute(Void result) {
+	      protected void onPostExecute(Void result) {
 	    	   
 	    	   super.onPostExecute(result);
 	    	  try {
@@ -266,7 +264,7 @@ public class Lay_Dispositivo extends Activity{
 	    			}
 	    		}
 	    	
-               Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_SHORT).show();
+          //     Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_SHORT).show();
 	    	  }
 
 	    	
