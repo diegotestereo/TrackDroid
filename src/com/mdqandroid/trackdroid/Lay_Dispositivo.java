@@ -29,6 +29,8 @@ public class Lay_Dispositivo extends Activity{
 	 
 	 BufferedReader entrada ;
 	 PrintWriter salida ;
+	 String StringRecibido=null;
+	 
 	String mensajeExit="",SelectorGlobal=null;
 	//Socket socketCliente;
 	
@@ -61,7 +63,7 @@ public class Lay_Dispositivo extends Activity{
 		Levantar_XML();
 		//sb= new StringBuilder();
 		Botones();
-		conectar();
+		//conectar();
 		 
 	}
 
@@ -99,7 +101,7 @@ public class Lay_Dispositivo extends Activity{
 				text_Status.setText("Conectado a:"+IpServidor+":"+puertito);
 				edit_ipServer.setEnabled(false);
 				edit_puerto.setEnabled(false);
-				Toast.makeText(getApplicationContext(), "Conectado Satisfactoriamente !!!", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "Conectado !", Toast.LENGTH_LONG).show();
 				
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
@@ -167,7 +169,7 @@ public class Lay_Dispositivo extends Activity{
 	    		public void onClick(View v) {
 	    			String mensaje=edit_mensajeCliente.getText().toString();
 	    			mensajeExit=mensaje;
-	    			Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
+	    		//	Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
 	    			clienteAsync Cliente = new clienteAsync();
 	    			Cliente.execute(mensaje);
 	    		
@@ -190,8 +192,11 @@ public class Lay_Dispositivo extends Activity{
 
 	
 
-	public class clienteAsync extends AsyncTask<String, Void,Void>{
+	public class clienteAsync extends AsyncTask<String, String,Void>{
 	    	
+		String recepcion=null;
+		
+		
 	    	protected void onPreExecute(Void arg0) {
 	    	   super.onPreExecute();
 	    	
@@ -200,12 +205,18 @@ public class Lay_Dispositivo extends Activity{
 	    	
 	    	protected Void doInBackground(String... msg) {
 	    		 String mensajito =msg[0];
-	    		// String Line="";
+	    		 String sorete = null;
+	    		 Log.d("clienteAsync","entro");
+	    		 try {
+	    			 entrada = new BufferedReader(new InputStreamReader(sk.getInputStream()));
+	    			// sorete=entrada.readLine();
+	    			 //System.out.println(sorete);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 	    		 
 	    		 try {
-	    			 	 entrada = new BufferedReader(new InputStreamReader(sk.getInputStream()));
-	    			 	// Line=entrada.readLine();
-	    			// 	 sb.append(Line);
+	    			 	
 	    				 salida = new PrintWriter(new OutputStreamWriter(sk.getOutputStream()),true);
 	    				
 	    				 salida.println(mensajito);// envia el mensaje
@@ -214,12 +225,6 @@ public class Lay_Dispositivo extends Activity{
 	    	 } catch (Exception e) {
 	    		 try {
 	    			text_mensajeServer.append(entrada.readLine() + "\n");
-	    		if(text_mensajeServer.getLineCount() > 5){
-	                    scroll_amount = scroll_amount + text_mensajeServer.getLineHeight();
-	                    text_mensajeServer.scrollTo(0, scroll_amount);
-	                }
-
-	    			
 	    			
 	    		} catch (IOException e1) {
 	    			// TODO Auto-generated catch block
@@ -228,42 +233,40 @@ public class Lay_Dispositivo extends Activity{
 	    				 }
 	    		 
 	    		
+					//recepcion= entrada.readLine();
+				
+    			 	
+						publishProgress(sorete);
+					
+	    		
 	    		 return null;
 	    	}
 	    	
-	       /*protected Boolean onProgressUpdate() {
-	    		// TODO Auto-generated method stub
-	    		super.onProgressUpdate();
-	    		
-	    		if(mensajeExit.equals("exit")){
-	    			ExitSocket=true;
-	    			}else{ExitSocket=false;}
-	    		
-	    		// DecodificaMensaje Decodificador = new DecodificaMensaje();
-				// Decodificador.execute(mensajito);
-	    		
-	    		
-	    		
-	    		return ExitSocket;
-	    		
-	    		
 	    	
-	    		
-	    		
-	    	}*/
+	    	@Override
+	    	protected void onProgressUpdate(String... values) {
+	    	// TODO Auto-generated method stub
+	    	super.onProgressUpdate(values);
+	    	
+	    	Toast.makeText(getApplicationContext(), values[0], Toast.LENGTH_SHORT).show();
+	    	
+	    	}
+	       
 	    	
 	    	@Override
 	      protected void onPostExecute(Void result) {
 	    	   
 	    	   super.onPostExecute(result);
+	    	  
+	    	 
 	    	  try {
 	    		text_mensajeServer.append(entrada.readLine() + "\n");
-	    	
-	    	} catch (IOException e) {
+	    		} catch (IOException e) {
 	    		// TODO Auto-generated catch block
 	    		e.printStackTrace();
 	    	}
 	    	  
+	    		
 	    		if(mensajeExit.equals("q")){
 	    			try {
 	    				sk.close();
@@ -279,7 +282,7 @@ public class Lay_Dispositivo extends Activity{
 	    			}
 	    		}
 	    	
-          //     Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_SHORT).show();
+       
 	    	  }
 
 	    	
