@@ -145,7 +145,7 @@ protected void onCreate(Bundle savedInstanceState) {
 	//text_Status=(TextView)findViewById(R.id.text_Status);
 }
 
-	public class clienteAsync extends AsyncTask<String, Boolean,Void>{
+	public class clienteAsync extends AsyncTask<String, Void,String>{
 	
 	protected void onPreExecute(Void arg0) {
 	   super.onPreExecute();
@@ -154,8 +154,10 @@ protected void onCreate(Bundle savedInstanceState) {
 	  }
 	
 	
-	protected Void doInBackground(String... msg) {
+	protected String doInBackground(String... msg) {
 		 String mensajito =msg[0];
+		 String[] cadena=null;
+		 cadena=msg;
 		 try {
 			 	 entrada = new BufferedReader(new InputStreamReader(sk.getInputStream()));
 				 salida = new PrintWriter(new OutputStreamWriter(sk.getOutputStream()),true);
@@ -180,11 +182,11 @@ protected void onCreate(Bundle savedInstanceState) {
 				 }
 		 
 	 
-		return null;
+		return cadena[0];
 	}
 	
-   protected Boolean onProgressUpdate() {
-		// TODO Auto-generated method stub
+  /* protected Boolean onProgressUpdate() {
+		
 		super.onProgressUpdate();
 		
 		if(mensajeExit.equals("exit")){
@@ -196,9 +198,11 @@ protected void onCreate(Bundle savedInstanceState) {
 		
 		
 	}
+	*/
+	
 	
 	@Override
-	  protected void onPostExecute(Void result) {
+	  protected void onPostExecute(String result) {
 	   
 	   super.onPostExecute(result);
 	  try {
@@ -225,7 +229,7 @@ protected void onCreate(Bundle savedInstanceState) {
 		}
 	
 	
-	  
+	  Toast.makeText(getApplicationContext(), "hola", Toast.LENGTH_SHORT).show();
 	  
 	  }
 	

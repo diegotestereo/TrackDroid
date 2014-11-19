@@ -18,6 +18,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,14 +31,14 @@ public class Lay_Dispositivo extends Activity{
 	 
 	 BufferedReader entrada ;
 	 PrintWriter salida ;
-	 String StringRecibido=null;
 	 
 	String mensajeExit="",SelectorGlobal=null;
 	//Socket socketCliente;
 	
 	Thread ThreadCliente;
 	int puerto=5001;
-	Button btn_conectar,btn_EnviarMensaje,btn_Desconectar,btn_Prueba;
+	Button btn_conectar,btn_EnviarMensaje,btn_Desconectar,btn_Prueba
+	, btn_Sensor1, btn_Sensor2, btn_Sensor3, btn_Sensor4;
 	EditText edit_ipServer, edit_puerto,edit_mensajeCliente;
 	TextView text_mensajeServer,text_Status,textA1,textA2,textA3,textA4,textPrueba;
 	ToggleButton toggleR1,toggleR2,toggleR3,toggleR4,toggleR5,toggleR6,toggleR7,toggleR8;
@@ -64,7 +66,138 @@ public class Lay_Dispositivo extends Activity{
 		//sb= new StringBuilder();
 		Botones();
 		//conectar();
-		 
+		TGbuttons();
+		
+	}
+
+	private void TGbuttons() {
+		// TODO Auto-generated method stub
+		toggleR1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				
+				String mensaje=null;
+				if (isChecked){
+    			mensaje="r1v1";}
+				else{
+					mensaje="r1v0";
+				}
+				clienteAsync Cliente = new clienteAsync();
+				Cliente.execute(mensaje);
+				
+			}
+		});
+		
+		toggleR2.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				
+				String mensaje=null;
+				if (isChecked){
+    			mensaje="r2v1";}
+				else{
+					mensaje="r2v0";
+				}
+				clienteAsync Cliente = new clienteAsync();
+				Cliente.execute(mensaje);
+				
+			}
+		});
+
+		toggleR3.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				String mensaje=null;
+				if (isChecked){
+    			mensaje="r3v1";}
+				else{
+					mensaje="r3v0";
+				}
+				clienteAsync Cliente = new clienteAsync();
+				Cliente.execute(mensaje);
+			}
+		});
+
+		toggleR4.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				
+				String mensaje=null;
+				if (isChecked){
+    			mensaje="r4v1";}
+				else{
+					mensaje="r4v0";
+				}
+				clienteAsync Cliente = new clienteAsync();
+				Cliente.execute(mensaje);
+			}
+		});
+
+		toggleR5.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				String mensaje=null;
+				if (isChecked){
+    			mensaje="r5v1";}
+				else{
+					mensaje="r5v0";
+				}
+				clienteAsync Cliente = new clienteAsync();
+				Cliente.execute(mensaje);
+			}
+		});
+
+		toggleR6.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				String mensaje=null;
+				if (isChecked){
+    			mensaje="r6v1";}
+				else{
+					mensaje="r6v0";
+				}
+				clienteAsync Cliente = new clienteAsync();
+				Cliente.execute(mensaje);
+			}
+		});
+
+		toggleR7.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				String mensaje=null;
+				if (isChecked){
+    			mensaje="r7v1";}
+				else{
+					mensaje="r7v0";
+				}
+				clienteAsync Cliente = new clienteAsync();
+				Cliente.execute(mensaje);
+			}
+		});
+
+		toggleR8.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				String mensaje=null;
+				if (isChecked){
+    			mensaje="r8v1";}
+				else{
+					mensaje="r8v0";
+				}
+				clienteAsync Cliente = new clienteAsync();
+				Cliente.execute(mensaje);	
+			}
+		});
+
+		
 	}
 
 	private void desconectar(){
@@ -96,11 +229,20 @@ public class Lay_Dispositivo extends Activity{
 			try {
 				sk = new Socket(IpServidor,puertito);
 				btn_Desconectar.setEnabled(true);
+				toggleR1.setEnabled(true);
+				toggleR2.setEnabled(true);
+				toggleR3.setEnabled(true);
+				toggleR4.setEnabled(true);
+				toggleR5.setEnabled(true);
+				toggleR6.setEnabled(true);
+				toggleR7.setEnabled(true);
+				toggleR8.setEnabled(true);
 				btn_conectar.setEnabled(false);
 				btn_EnviarMensaje.setEnabled(true);
-				text_Status.setText("Conectado a:"+IpServidor+":"+puertito);
+				text_Status.setText("Conectado a: "+IpServidor+" : "+puertito);
 				edit_ipServer.setEnabled(false);
 				edit_puerto.setEnabled(false);
+				
 				Toast.makeText(getApplicationContext(), "Conectado !", Toast.LENGTH_LONG).show();
 				
 			} catch (UnknownHostException e) {
@@ -141,7 +283,9 @@ public class Lay_Dispositivo extends Activity{
 		finish();
 		
 	}
+	
 	private void Botones() {
+		
 	    	btn_conectar.setOnClickListener(new OnClickListener() {
 	    		@Override
 	    		public void onClick(View v) {
@@ -163,6 +307,7 @@ public class Lay_Dispositivo extends Activity{
 	    		
 	   	}
 	    	});
+	    	
 	    	btn_EnviarMensaje.setOnClickListener(new OnClickListener() {
 	    		
 	    		@Override
@@ -177,8 +322,7 @@ public class Lay_Dispositivo extends Activity{
 	    			
 	    		}
 	    	});
-	    	
-	    	
+	    	 	
 	    	btn_Prueba.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -188,32 +332,65 @@ public class Lay_Dispositivo extends Activity{
 					decomsg.execute(edit_mensajeCliente.getText().toString());
 				}
 			});
-	    }
+	    	
+	    	btn_Sensor1.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					clienteAsync Cliente = new clienteAsync();
+	    			Cliente.execute("a1");
+					
+				}
+			});
+	    	
+	    	btn_Sensor2.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					clienteAsync Cliente = new clienteAsync();
+	    			Cliente.execute("a2");
+				}
+			});
+	    	
+	    	btn_Sensor3.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					clienteAsync Cliente = new clienteAsync();
+	    			Cliente.execute("a3");
+				}
+			});
+	    	
+	    	btn_Sensor4.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					clienteAsync Cliente = new clienteAsync();
+	    			Cliente.execute("a4");
+				}
+			});
+
 
 	
+	}
 
-	public class clienteAsync extends AsyncTask<String, String,Void>{
-	    	
-		String recepcion=null;
+	public class clienteAsync extends AsyncTask<String, Void,Void>{
 		
-		
-	    	protected void onPreExecute(Void arg0) {
-	    	   super.onPreExecute();
-	    	
-	    	}
-	    	
+		 
 	    	
 	    	protected Void doInBackground(String... msg) {
+	    		
 	    		 String mensajito =msg[0];
-	    		 String sorete = null;
+	    		
 	    		 Log.d("clienteAsync","entro");
 	    		 try {
 	    			 entrada = new BufferedReader(new InputStreamReader(sk.getInputStream()));
-	    			// sorete=entrada.readLine();
-	    			 //System.out.println(sorete);
+	    			
+	    			
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
+	    	
 	    		 
 	    		 try {
 	    			 	
@@ -223,35 +400,13 @@ public class Lay_Dispositivo extends Activity{
 	    				
 	    				
 	    	 } catch (Exception e) {
-	    		 try {
-	    			text_mensajeServer.append(entrada.readLine() + "\n");
-	    			
-	    		} catch (IOException e1) {
-	    			// TODO Auto-generated catch block
-	    			e1.printStackTrace();
-	    		}
-	    				 }
+	    		 	 }
 	    		 
-	    		
-					//recepcion= entrada.readLine();
-				
-    			 	
-						publishProgress(sorete);
-					
-	    		
+    		
 	    		 return null;
 	    	}
 	    	
-	    	
-	    	@Override
-	    	protected void onProgressUpdate(String... values) {
-	    	// TODO Auto-generated method stub
-	    	super.onProgressUpdate(values);
-	    	
-	    	Toast.makeText(getApplicationContext(), values[0], Toast.LENGTH_SHORT).show();
-	    	
-	    	}
-	       
+	     
 	    	
 	    	@Override
 	      protected void onPostExecute(Void result) {
@@ -260,13 +415,12 @@ public class Lay_Dispositivo extends Activity{
 	    	  
 	    	 
 	    	  try {
-	    		text_mensajeServer.append(entrada.readLine() + "\n");
+	    		text_mensajeServer.setText(entrada.readLine() + "\n");
 	    		} catch (IOException e) {
 	    		// TODO Auto-generated catch block
 	    		e.printStackTrace();
 	    	}
-	    	  
-	    		
+	    	
 	    		if(mensajeExit.equals("q")){
 	    			try {
 	    				sk.close();
@@ -281,24 +435,25 @@ public class Lay_Dispositivo extends Activity{
 	    				e.printStackTrace();
 	    			}
 	    		}
-	    	
-       
+	    //	Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+       DecodificaMensaje deco=new DecodificaMensaje();
+       deco.execute(text_mensajeServer.getText().toString());
 	    	  }
 
 	    	
 	    }
 
-	 public class DecodificaMensaje extends AsyncTask<String, Void,Void>{
+	 public class DecodificaMensaje extends AsyncTask<String, Void,String>{
 		    	
 		    	protected void onPreExecute(Void arg0) {
 		    	   super.onPreExecute();
-		    	 
+		    	 Log.d("deco", "n PREexecute");
 		    	   DecoTipo="";
 		    	   DecoValor="";
 		    	}
 		    	
 		    	
-		    	protected Void doInBackground(String... msg) {
+		    	protected String doInBackground(String... msg) {
 		    		
 		    		 String selector =msg[0];
 		    		 SelectorGlobal=msg[0];
@@ -313,7 +468,7 @@ public class Lay_Dispositivo extends Activity{
 		    		 }else{
 		    		DecoValor = selector.substring(3,selector.length());}
 		    		
-		    		return null;
+		    		return DecoTipo;
 		    	}
 		    	
 		       protected Boolean onProgressUpdate() {
@@ -329,19 +484,19 @@ public class Lay_Dispositivo extends Activity{
 		    	}
 		    	
 		    	@Override
-		    	  protected void onPostExecute(Void result) {
+		    	  protected void onPostExecute(String result) {
 		    	   
 		    	   super.onPostExecute(result);
-		    	switch (DecoTipo) {
+		    	switch (result) {
 					case "t1":textA1.setText(DecoValor);
 						         	break;
 					case "t2":textA2.setText(DecoValor);
 						
 						break;
-					case "p1":textA3.setText(DecoValor);
+					case "h1":textA3.setText(DecoValor);
 						
 						break;
-					case "p2":textA4.setText(DecoValor);
+					case "h2":textA4.setText(DecoValor);
 						
 						break;
 					case "r1":toggleR1.setChecked(DecoRelay);
@@ -385,6 +540,10 @@ public class Lay_Dispositivo extends Activity{
 	    	btn_EnviarMensaje=(Button) findViewById(R.id.btn_EnviarMensaje);
 	    	btn_Desconectar=(Button) findViewById(R.id.btn_Desconectar);
 	    	btn_Prueba=(Button) findViewById(R.id.btn_Prueba);
+	    	btn_Sensor1=(Button) findViewById(R.id.btn_Sensor1);
+	    	btn_Sensor2=(Button) findViewById(R.id.btn_Sensor2);
+	    	btn_Sensor3=(Button) findViewById(R.id.btn_Sensor3);
+	    	btn_Sensor4=(Button) findViewById(R.id.btn_Sensor4);
 	    	
 	    	
 	    	edit_ipServer=(EditText)findViewById(R.id.edit_IPServer);

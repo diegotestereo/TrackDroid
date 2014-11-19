@@ -8,7 +8,8 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+       >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,7 +69,7 @@
                 <Button
                     android:id="@+id/btn_Conectar"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Conectar" />
 
                 <Button
@@ -77,6 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.55"
                     android:enabled="false"
+                    android:visibility="invisible"
                     android:text="Desconectar" />
 
                 <TextView
@@ -143,23 +145,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
-                    <TextView
-                        android:id="@+id/textView1"
+                    <Button
+                        android:id="@+id/btn_Sensor1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sensor 1: " />
+                        android:text="Sensor 1" />
 
                     <TextView
                         android:id="@+id/textA1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="textview" />
+                        android:text="Textview" />
 
-                    <TextView
-                        android:id="@+id/textView4"
+                    <Button
+                        android:id="@+id/btn_Sensor2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sensor 2: " />
+                        android:text="Sensor 2" />
 
                     <TextView
                         android:id="@+id/textA2"
@@ -173,11 +175,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
-                    <TextView
-                        android:id="@+id/textView6"
+                    <Button
+                        android:id="@+id/btn_Sensor3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sensor 3: " />
+                        android:text="Sensor 3" />
 
                     <TextView
                         android:id="@+id/textA3"
@@ -185,11 +187,11 @@
                         android:layout_height="wrap_content"
                         android:text="TextView" />
 
-                    <TextView
-                        android:id="@+id/textView8"
+                    <Button
+                        android:id="@+id/btn_Sensor4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sensor 4: " />
+                        android:text="Sensor 4" />
 
                     <TextView
                         android:id="@+id/textA4"
@@ -218,13 +220,15 @@
                             android:id="@+id/textView10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Relay 5" />
+                            android:text="Relay 1" />
 
                         <ToggleButton
                             android:id="@+id/toggleR1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:enabled="false"
                             android:text="ToggleButton" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -236,13 +240,15 @@
                             android:id="@+id/textView11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Relay 6" />
+                            android:text="Relay 2" />
 
                         <ToggleButton
                             android:id="@+id/toggleR2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:enabled="false"
                             android:text="ToggleButton" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -254,12 +260,13 @@
                             android:id="@+id/textView12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Relay 7" />
+                            android:text="Relay 3" />
 
                         <ToggleButton
                             android:id="@+id/toggleR3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                             android:enabled="false"
                             android:text="ToggleButton" />
                     </LinearLayout>
 
@@ -272,12 +279,13 @@
                             android:id="@+id/textView13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Relay 7" />
+                            android:text="Relay 4" />
 
                         <ToggleButton
                             android:id="@+id/toggleR4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                             android:enabled="false"
                             android:text="ToggleButton" />
                     </LinearLayout>
                 </TableRow>
@@ -296,12 +304,13 @@
                             android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Relay 1" />
+                            android:text="Relay 5" />
 
                         <ToggleButton
                             android:id="@+id/toggleR5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                             android:enabled="false"
                             android:text="ToggleButton" />
                     </LinearLayout>
 
@@ -314,12 +323,13 @@
                             android:id="@+id/textView5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Relay 2" />
+                            android:text="Relay 6" />
 
                         <ToggleButton
                             android:id="@+id/toggleR6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                             android:enabled="false"
                             android:text="ToggleButton" />
                     </LinearLayout>
 
@@ -332,12 +342,13 @@
                             android:id="@+id/textView7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Relay 3" />
+                            android:text="Relay 7" />
 
                         <ToggleButton
                             android:id="@+id/toggleR7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                             android:enabled="false"
                             android:text="ToggleButton" />
                     </LinearLayout>
 
@@ -350,12 +361,13 @@
                             android:id="@+id/textView9"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Relay 4" />
+                            android:text="Relay 8" />
 
                         <ToggleButton
                             android:id="@+id/toggleR8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:enabled="false"
                             android:text="ToggleButton" />
                     </LinearLayout>
                 </TableRow>
@@ -365,6 +377,7 @@
                 android:id="@+id/scrollView1"
                 android:layout_width="match_parent"
                 android:layout_height="242dp"
+                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:fillViewport="true" >
 
                 <LinearLayout
@@ -374,9 +387,11 @@
 
                     <TextView
                         android:id="@+id/text_MensajeServer"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:enabled="true"
                         android:text="Dispositivo:\n" />
+
                 </LinearLayout>
             </ScrollView>
 
