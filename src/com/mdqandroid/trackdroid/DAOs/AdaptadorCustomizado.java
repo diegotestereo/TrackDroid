@@ -3,6 +3,8 @@ package com.mdqandroid.trackdroid.DAOs;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.mdqandroid.trackdroid.Objetos.DispositivosClase;
+
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
@@ -48,25 +50,25 @@ public class AdaptadorCustomizado extends BaseAdapter
 		// TODO Auto-generated method stub
 		return null;
 	}
-/*	private SQLHelperAdaptador dao;
-	private ArrayList<ReparacionesClase> reparaciones;
+	private SQLHelperAdaptador dao;
+	private ArrayList<DispositivosClase> Dispositivos;
 	private Activity ac;
-	private int modelo, version, falla, serial, hs24, reparacion, editar;
-	private String observacion, Sfecha;
-	private Date fecha;
-	private java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
-
-	public AdaptadorCustomizado(ArrayList<ReparacionesClase> reparacion, Activity ac)
+	private int IP, Puerto, Entradas, Salidas;
+	private String observacion, Nombre;
+	
+	public AdaptadorCustomizado(ArrayList<DispositivosClase> reparacion, Activity ac)
 	{
-		this.reparaciones = reparacion;
+		this.Dispositivos = reparacion;
 		this.ac = ac;
 
 	}
-
+	
+	
+/*
 	@Override
 	public int getCount()
 	{
-		return reparaciones.size();
+		return Dispositivos.size();
 	}
 
 	@Override
@@ -80,7 +82,7 @@ public class AdaptadorCustomizado extends BaseAdapter
 	{
 		return 0;
 	}
-
+*/
 	// creo objeto contenedor
 	static class ViewHolder
 	{
@@ -93,7 +95,7 @@ public class AdaptadorCustomizado extends BaseAdapter
 	}
 
 	
-	*/
+	
 	//***********************************************************////
 	////////// alert dialog Eliminar/////////////////////////////
 	
@@ -277,6 +279,6 @@ public class AdaptadorCustomizado extends BaseAdapter
 		});
 
 		return convertView;
-	}
-*/
+	}*/
+
 }
