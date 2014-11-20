@@ -1,6 +1,7 @@
 package com.mdqandroid.trackdroid;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.net.*;
@@ -17,7 +19,8 @@ import java.io.*;
 
 public class MainActivity extends Activity {
 	Button bton_disp1,bton_disp2;
-	 final Context context = this;
+	ListView listView_Dispositivos;
+	// final Context context = this;
 	 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 
 private void botones() {
+	
 	bton_disp1.setOnClickListener(new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -65,8 +69,11 @@ private void botones() {
 }
 
 private void LevantarXML() {
+	//Botones
 	bton_disp1=(Button) findViewById(R.id.btn_disp1);
 	bton_disp2=(Button) findViewById(R.id.btn_disp2);
+	//Lista
+	listView_Dispositivos=(ListView) findViewById(R.id.listView_Dispositivos);
 	
 }
 

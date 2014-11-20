@@ -16,31 +16,33 @@
         android:textSize="25dp" />
 
     <LinearLayout
+        android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp" >
+        android:layout_height="wrap_content"
+     
+        android:gravity="center"
+        android:orientation="vertical" >
 
-        <LinearLayout
-            android:id="@+id/LinearLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="82dp"
-            android:layout_weight="5.58"
-            android:gravity="center"
-            android:orientation="vertical" >
+        <Button
+            android:id="@+id/btn_disp1"
+            style="@style/estilo_dispositivo"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.06"
+            android:text="Dispositivo 1" />
 
-            <Button
-                android:id="@+id/btn_disp1"
-                style="@style/estilo_dispositivo"
-                android:layout_height="412dp"
-                android:text="Dispo 1" />
+        <Button
+            android:id="@+id/btn_disp2"
+            style="@style/estilo_dispositivo"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"
+            android:text="Dispositivo 2" />
 
-            <Button
-                android:id="@+id/btn_disp2"
-                style="@style/estilo_dispositivo"
-                android:layout_height="412dp"
-                android:text="Dispo 2" />
-        </LinearLayout>
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView_Dispositivos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>
