@@ -116,54 +116,7 @@ public class SQLHelperAdaptador extends SQLiteOpenHelper
 
 	// ///////////////////////////////////RECUPERAR DATOS DE TABLAS
 
-	// public ArrayList<ReparacionesClase> recuperarReparaciones()
-	
-	/*
-	public ArrayList<ReparacionesClase> recuperarReparaciones(int serie)
-	{
-		SQLiteDatabase baseDatos = getWritableDatabase();
-
-		String sql = "SELECT * FROM Tabla_Reparaciones WHERE serial=" + serie; // name
-																				// LIKE
-																				// '%LIM%'
-
-		Cursor cursor = baseDatos.rawQuery(sql, null);
-		ArrayList<ReparacionesClase> reparacionArray = new ArrayList<ReparacionesClase>();
-
-		while (cursor.moveToNext())
-		{
-			ReparacionesClase oReparacion = new ReparacionesClase();
-
-			oReparacion.setId_Reparacion(cursor.getInt(0));
-
-			// / dor formato de fecha... levanto string y lo paso a DATE
-
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			String fecha = cursor.getString(1);
-			try
-			{
-				Date date = formatter.parse(fecha);
-				oReparacion.setFecha(date);
-
-			}
-			catch (ParseException e)
-			{
-				e.printStackTrace();
-			}
-			oReparacion.setSerial(cursor.getInt(2));
-			oReparacion.setId_modelo(cursor.getInt(3));
-			oReparacion.setId_version(cursor.getInt(4));
-			oReparacion.setId_falla(cursor.getInt(5));
-			oReparacion.setObservaciones(cursor.getString(6));
-			oReparacion.setHs24(cursor.getInt(7));
-			reparacionArray.add(oReparacion);
-		}
-		cursor.close();
-		baseDatos.close();
-		return reparacionArray;
-	}*/
-
-	public ArrayList<DispositivosClase> recuperarReparaciones()
+		public ArrayList<DispositivosClase> recuperarReparaciones()
 
 	{
 		SQLiteDatabase baseDatos = getWritableDatabase();
