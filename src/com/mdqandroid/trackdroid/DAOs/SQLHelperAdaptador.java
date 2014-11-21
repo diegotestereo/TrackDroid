@@ -104,7 +104,7 @@ public class SQLHelperAdaptador extends SQLiteOpenHelper
 	// /////////////////FIN RECUPERAR CANTIDAD FILAS
 
 	// /////////////////////// BORRAR FILA TABLAS
-	public void borrarReparacion(int id_Dispositivo)
+	public void borrarDispositivo(int id_Dispositivo)
 	{
 		SQLiteDatabase baseDatos = getWritableDatabase();
 		baseDatos.execSQL("DELETE FROM Tabla_Dispositivos WHERE id_Dispositivo = " + id_Dispositivo);

@@ -3,6 +3,10 @@ package com.mdqandroid.trackdroid.DAOs;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.mdqandroid.trackdroid.Lay_Configuracion;
+import com.mdqandroid.trackdroid.Lay_Dispositivo;
+import com.mdqandroid.trackdroid.MainActivity;
+import com.mdqandroid.trackdroid.R;
 import com.mdqandroid.trackdroid.Objetos.DispositivosClase;
 
 import android.app.Activity;
@@ -18,6 +22,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,17 +31,30 @@ import android.widget.Toast;
 
 public class AdaptadorCustomizado extends BaseAdapter
 {
+	private SQLHelperAdaptador dao;
+	private ArrayList<DispositivosClase> dispositivos;
+	private Activity ac;
+	private int IP, Puerto, Entradas, Salidas,id_Dispositivo;
+	private String observacion, Nombre;
+	
+	public AdaptadorCustomizado(ArrayList<DispositivosClase> reparacion, Activity ac)
+	{
+		this.dispositivos = reparacion;
+		this.ac = ac;
+
+	}
+	
 
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return dispositivos.size();
 	}
 
 	@Override
-	public Object getItem(int position) {
+	public DispositivosClase getItem(int position) {
 		// TODO Auto-generated method stub
-		return null;
+		return dispositivos.get(position);
 	}
 
 	@Override
@@ -45,44 +63,7 @@ public class AdaptadorCustomizado extends BaseAdapter
 		return 0;
 	}
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	private SQLHelperAdaptador dao;
-	private ArrayList<DispositivosClase> Dispositivos;
-	private Activity ac;
-	private int IP, Puerto, Entradas, Salidas;
-	private String observacion, Nombre;
-	
-	public AdaptadorCustomizado(ArrayList<DispositivosClase> reparacion, Activity ac)
-	{
-		this.Dispositivos = reparacion;
-		this.ac = ac;
 
-	}
-	
-	
-/*
-	@Override
-	public int getCount()
-	{
-		return Dispositivos.size();
-	}
-
-	@Override
-	public ReparacionesClase getItem(int position)
-	{
-		return reparaciones.get(position);
-	}
-
-	@Override
-	public long getItemId(int position)
-	{
-		return 0;
-	}
-*/
 	// creo objeto contenedor
 	static class ViewHolder
 	{
@@ -91,7 +72,7 @@ public class AdaptadorCustomizado extends BaseAdapter
 		ImageView imagen;
 		RelativeLayout ll_row;
 		Button btn_borrar, btn_editar;
-
+		CheckBox CheckBox_AutoPull;
 	}
 
 	
@@ -100,11 +81,11 @@ public class AdaptadorCustomizado extends BaseAdapter
 	////////// alert dialog Eliminar/////////////////////////////
 	
 	
-	/*
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		final ReparacionesClase item = getItem(position);
+		final DispositivosClase item = getItem(position);
 
 		ViewHolder holder;
 
@@ -128,7 +109,7 @@ public class AdaptadorCustomizado extends BaseAdapter
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.text_Titulo.setText("Serial: " + item.getSerial());
+		holder.text_Titulo.setText("Dispositivo: " + item.getNombre());
 		holder.text_Descripcion.setText(item.getObservaciones());
 
 		holder.ll_row.setOnClickListener(new OnClickListener()
@@ -139,33 +120,25 @@ public class AdaptadorCustomizado extends BaseAdapter
 			{
 				// / para hacer no tactil la ventana
 
-				Intent intento = new Intent(ac, lay_reparacion.class);
+				Intent intento = new Intent(ac, Lay_Dispositivo.class);
 				intento.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-				editar = 0;
-				intento.putExtra("editar", editar);
-
-				reparacion = item.getId_Reparacion();
-				serial = item.getSerial();
-				hs24 = item.getHs24();
-
+				id_Dispositivo = item.getId_Dispositivo();
+				Nombre =item.getNombre();
+				IP = item.getIP();
+				Puerto = item.getPuerto();
+				Entradas=item.getEntradas();
+				Salidas=item.getSalidas();
 				observacion = item.getObservaciones();
-				fecha = item.getFecha();
+				
 
-				Sfecha = sdf.format(fecha);
-				modelo = item.getId_modelo();
-				version = item.getId_version();
-				falla = item.getId_falla();
-
-				intento.putExtra("reparacion", reparacion);
-				intento.putExtra("serial", serial);
-				intento.putExtra("hs24", hs24);
-				intento.putExtra("fecha", Sfecha);
+				intento.putExtra("Nombre", Nombre);
+				intento.putExtra("IP", IP);
+				intento.putExtra("Puerto", Puerto);
+				intento.putExtra("Entradas", Entradas);
+				intento.putExtra("Salidas", Salidas);
 				intento.putExtra("observacion", observacion);
-				intento.putExtra("falla", falla);
-				intento.putExtra("modelo", modelo);
-				intento.putExtra("version", version);
-
+			
 				ac.startActivity(intento);
 			}
 		});
@@ -176,7 +149,7 @@ public class AdaptadorCustomizado extends BaseAdapter
 			public void onClick(View v)
 			{
 				
-				//dialogoEliminar(); //cuando llega aca hayt error
+				
 				AlertDialog.Builder dialog = new AlertDialog.Builder(ac);
 
 				dialog.setMessage("¿Eliminar Reparación?");
@@ -192,8 +165,8 @@ public class AdaptadorCustomizado extends BaseAdapter
 						// LA BASE DE DATOS ESTA HARDCODEADA.. HAY QUE ARREGLARLO
 						dao = new SQLHelperAdaptador(ac,ac.getString(R.string.DataBase), null, 1);
 
-						dao.borrarReparacion(item.getId_Reparacion());
-						Toast.makeText(ac, "Reparacion " + item.getId_Reparacion() + " Borrada !!! ", Toast.LENGTH_SHORT).show();
+						dao.borrarDispositivo(id_Dispositivo);
+					//	Toast.makeText(ac, "Reparacion " + item.getId_Dispositivo() + " Borrada !!! ", Toast.LENGTH_SHORT).show();
 
 						//llamo a la misma asi se vuelve a setear el adapter
 						//si, es algo primitivo pero es la forma mÃ¡s eficaz
@@ -210,7 +183,7 @@ public class AdaptadorCustomizado extends BaseAdapter
 						}else{
 							
 
-							Intent intent = new Intent(ac, Lay_VerReparaciones.class); 
+							Intent intent = new Intent(ac, Lay_Dispositivo.class); 
 						
 							intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);//limpio la pila de actividades
 							
@@ -246,32 +219,23 @@ public class AdaptadorCustomizado extends BaseAdapter
 			@Override
 			public void onClick(View v)
 			{
-				Intent intento = new Intent(ac, lay_reparacion.class);
+				Intent intento = new Intent(ac, Lay_Configuracion.class);
 				intento.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-				editar = 1;
-				intento.putExtra("editar", editar);
-
-				reparacion = item.getId_Reparacion();
-				serial = item.getSerial();
-				hs24 = item.getHs24();
-
+				Nombre =item.getNombre();
+				IP = item.getIP();
+				Puerto = item.getPuerto();
+				Entradas=item.getEntradas();
+				Salidas=item.getSalidas();
 				observacion = item.getObservaciones();
-				fecha = item.getFecha();
+				
 
-				Sfecha = sdf.format(fecha);
-				modelo = item.getId_modelo();
-				version = item.getId_version();
-				falla = item.getId_falla();
-
-				intento.putExtra("reparacion", reparacion);
-				intento.putExtra("serial", serial);
-				intento.putExtra("hs24", hs24);
-				intento.putExtra("fecha", Sfecha);
+				intento.putExtra("Nombre", Nombre);
+				intento.putExtra("IP", IP);
+				intento.putExtra("Puerto", Puerto);
+				intento.putExtra("Entradas", Entradas);
+				intento.putExtra("Salidas", Salidas);
 				intento.putExtra("observacion", observacion);
-				intento.putExtra("falla", falla);
-				intento.putExtra("modelo", modelo);
-				intento.putExtra("version", version);
 
 				ac.startActivity(intento);
 
@@ -279,6 +243,6 @@ public class AdaptadorCustomizado extends BaseAdapter
 		});
 
 		return convertView;
-	}*/
+	}
 
 }

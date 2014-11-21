@@ -2,17 +2,17 @@ package com.mdqandroid.trackdroid.Objetos;
 
 public class DispositivosClase {
 	
-	int id_Dispositivo;
+	
+	int IP,Puerto,Entradas,Salidas,id_Dispositivo;
+	String Nombre,Observaciones;
+		
 	public int getId_Dispositivo() {
 		return id_Dispositivo;
 	}
-	public void setId_Dispositivo(int id_Dispositivo) {
-		this.id_Dispositivo = id_Dispositivo;
+	public void setId_Dispositivo(int id_dispositivo) {
+		this.id_Dispositivo = id_dispositivo;
 	}
-	String Nombre;
-	int IP,Puerto,Entradas,Salidas;
-	String Observaciones;
-		
+	
 	public String getNombre() {
 		return Nombre;
 	}

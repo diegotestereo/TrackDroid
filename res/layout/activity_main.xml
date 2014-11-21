@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo1"
-  
     android:orientation="vertical" >
 
     <TextView
@@ -16,26 +15,37 @@
         android:textSize="25dp" />
 
     <LinearLayout
-        android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-     
-        android:gravity="center"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/btn_disp1"
             style="@style/estilo_dispositivo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.06"
-            android:text="Dispositivo 1" />
+            android:text="Disp 1" />
 
         <Button
             android:id="@+id/btn_disp2"
             style="@style/estilo_dispositivo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.20"
-            android:text="Dispositivo 2" />
+            android:text="Disp 2" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_Agregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar Dispositivos" />
 
     </LinearLayout>
 
