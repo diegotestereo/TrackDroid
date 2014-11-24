@@ -52,9 +52,11 @@ public class Lay_Dispositivo extends Activity{
 	// clienteAsync Cliente;
 	int scroll_amount;
 	Boolean ExitSocket=false;
-	
-	
+	static final String ID0="000";
+	static final String ID1="001";
+	EditText editID485;
 	//StringBuilder sb ;
+	String id485=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +65,12 @@ public class Lay_Dispositivo extends Activity{
 		setContentView(R.layout.lay_dispositivo);
 		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
 		Levantar_XML();
+		id485=editID485.getText().toString();
 		//sb= new StringBuilder();
 		Botones();
 		//conectar();
 		TGbuttons();
+		
 		
 	}
 
@@ -76,7 +80,7 @@ public class Lay_Dispositivo extends Activity{
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				
+			
 				String mensaje=null;
 				if (isChecked){
     			mensaje="r1v1";}
@@ -84,7 +88,7 @@ public class Lay_Dispositivo extends Activity{
 					mensaje="r1v0";
 				}
 				clienteAsync Cliente = new clienteAsync();
-				Cliente.execute(mensaje);
+				Cliente.execute("$"+id485+mensaje+"#");
 				
 			}
 		});
@@ -101,7 +105,7 @@ public class Lay_Dispositivo extends Activity{
 					mensaje="r2v0";
 				}
 				clienteAsync Cliente = new clienteAsync();
-				Cliente.execute(mensaje);
+				Cliente.execute("$"+id485+mensaje+"#");
 				
 			}
 		});
@@ -117,7 +121,7 @@ public class Lay_Dispositivo extends Activity{
 					mensaje="r3v0";
 				}
 				clienteAsync Cliente = new clienteAsync();
-				Cliente.execute(mensaje);
+				Cliente.execute("$"+id485+mensaje+"#");
 			}
 		});
 
@@ -133,7 +137,7 @@ public class Lay_Dispositivo extends Activity{
 					mensaje="r4v0";
 				}
 				clienteAsync Cliente = new clienteAsync();
-				Cliente.execute(mensaje);
+				Cliente.execute("$"+id485+mensaje+"#");
 			}
 		});
 
@@ -148,7 +152,7 @@ public class Lay_Dispositivo extends Activity{
 					mensaje="r5v0";
 				}
 				clienteAsync Cliente = new clienteAsync();
-				Cliente.execute(mensaje);
+				Cliente.execute("$"+id485+mensaje+"#");
 			}
 		});
 
@@ -163,7 +167,7 @@ public class Lay_Dispositivo extends Activity{
 					mensaje="r6v0";
 				}
 				clienteAsync Cliente = new clienteAsync();
-				Cliente.execute(mensaje);
+				Cliente.execute("$"+id485+mensaje+"#");
 			}
 		});
 
@@ -178,7 +182,7 @@ public class Lay_Dispositivo extends Activity{
 					mensaje="r7v0";
 				}
 				clienteAsync Cliente = new clienteAsync();
-				Cliente.execute(mensaje);
+				Cliente.execute("$"+id485+mensaje+"#");
 			}
 		});
 
@@ -193,7 +197,7 @@ public class Lay_Dispositivo extends Activity{
 					mensaje="r8v0";
 				}
 				clienteAsync Cliente = new clienteAsync();
-				Cliente.execute(mensaje);	
+				Cliente.execute("$"+id485+mensaje+"#");	
 			}
 		});
 
@@ -280,6 +284,8 @@ public class Lay_Dispositivo extends Activity{
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
+		clienteAsync Cliente = new clienteAsync();
+		Cliente.execute("q");
 		finish();
 		
 	}
@@ -328,8 +334,8 @@ public class Lay_Dispositivo extends Activity{
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					DecodificaMensaje decomsg= new DecodificaMensaje();
-					decomsg.execute(edit_mensajeCliente.getText().toString());
+					clienteAsync Cliente = new clienteAsync();
+					Cliente.execute("$000st#");
 				}
 			});
 	    	
@@ -338,7 +344,7 @@ public class Lay_Dispositivo extends Activity{
 				@Override
 				public void onClick(View v) {
 					clienteAsync Cliente = new clienteAsync();
-	    			Cliente.execute("a1");
+					Cliente.execute("$"+id485+"te#");
 					
 				}
 			});
@@ -348,7 +354,7 @@ public class Lay_Dispositivo extends Activity{
 				@Override
 				public void onClick(View v) {
 					clienteAsync Cliente = new clienteAsync();
-	    			Cliente.execute("a2");
+					Cliente.execute("$"+id485+"te#");
 				}
 			});
 	    	
@@ -357,7 +363,7 @@ public class Lay_Dispositivo extends Activity{
 				@Override
 				public void onClick(View v) {
 					clienteAsync Cliente = new clienteAsync();
-	    			Cliente.execute("a3");
+					Cliente.execute("$"+id485+"te#");
 				}
 			});
 	    	
@@ -366,7 +372,7 @@ public class Lay_Dispositivo extends Activity{
 				@Override
 				public void onClick(View v) {
 					clienteAsync Cliente = new clienteAsync();
-	    			Cliente.execute("a4");
+					Cliente.execute("$"+id485+"te#");
 				}
 			});
 
@@ -415,7 +421,8 @@ public class Lay_Dispositivo extends Activity{
 	    	  
 	    	 
 	    	  try {
-	    		text_mensajeServer.setText(entrada.readLine() + "\n");
+	    	//	text_mensajeServer.setText(entrada.readLine() + "\n");
+	    		text_mensajeServer.setText(entrada.readLine() );
 	    		} catch (IOException e) {
 	    		// TODO Auto-generated catch block
 	    		e.printStackTrace();
@@ -457,7 +464,7 @@ public class Lay_Dispositivo extends Activity{
 		    		
 		    		 String selector =msg[0];
 		    		 SelectorGlobal=msg[0];
-		    		 DecoTipo = selector.substring(0,2);
+		    		 DecoTipo = selector.substring(6,8);
 		    		
 		    		 if(selector.substring(0,1).equals("r")){
 		    			 DecoValor = selector.substring(3,4);
@@ -488,9 +495,9 @@ public class Lay_Dispositivo extends Activity{
 		    	   
 		    	   super.onPostExecute(result);
 		    	switch (result) {
-					case "t1":textA1.setText(DecoValor);
+					case "te":textA1.setText(DecoValor.substring(6, 11)+" °C ");
 						         	break;
-					case "t2":textA2.setText(DecoValor);
+					case "a1":textA2.setText(DecoValor);
 						
 						break;
 					case "h1":textA3.setText(DecoValor);
@@ -523,8 +530,10 @@ public class Lay_Dispositivo extends Activity{
 					case "r8":toggleR8.setChecked(DecoRelay);
 						
 						break;
+					
 					default:
-						Toast.makeText(getApplicationContext(), "Error comando", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), "Error: "+result, Toast.LENGTH_SHORT).show();
+						
 						break;
 					}
 
@@ -549,6 +558,9 @@ public class Lay_Dispositivo extends Activity{
 	    	edit_ipServer=(EditText)findViewById(R.id.edit_IPServer);
 	    	edit_puerto=(EditText)findViewById(R.id.edit_puerto);
 	    	edit_mensajeCliente=(EditText)findViewById(R.id.edit_MensajeCliente);
+	    	editID485=(EditText)findViewById(R.id.editID485);
+	    	
+	    	
 	    	text_mensajeServer=(TextView)findViewById(R.id.text_MensajeServer);
 	    	text_Status=(TextView)findViewById(R.id.textStatus);
 	    	textPrueba=(TextView)findViewById(R.id.textPrueba);
