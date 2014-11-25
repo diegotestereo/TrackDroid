@@ -59,6 +59,7 @@ public class Lay_Dispositivo extends Activity{
 	//StringBuilder sb ;
 	String id485=null;
 	CheckBox checkAutoPull;
+	Autopull asinc;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,8 @@ public class Lay_Dispositivo extends Activity{
 		//conectar();
 		TGbuttons();
 		Checkboxes();
+		asinc=new Autopull();
+		
 		
 	}
 
@@ -81,7 +84,13 @@ public class Lay_Dispositivo extends Activity{
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				Toast.makeText(getApplicationContext(),""+isChecked, Toast.LENGTH_SHORT).show();
+				if(isChecked){
+					Toast.makeText(getApplicationContext(),"AutoPulling Activado", Toast.LENGTH_SHORT).show();
+					asinc.execute();
+				}else{
+					Toast.makeText(getApplicationContext(),"AutoPulling Desactivado", Toast.LENGTH_SHORT).show();
+					asinc.cancel(true);
+				}
 				
 			}
 		});
@@ -369,8 +378,7 @@ public class Lay_Dispositivo extends Activity{
 				
 				@Override
 				public void onClick(View v) {
-					clienteAsync Cliente = new clienteAsync();
-					Cliente.execute("$"+id485+"te#");
+										asinc.execute();
 				}
 			});
 	    	
@@ -378,8 +386,8 @@ public class Lay_Dispositivo extends Activity{
 				
 				@Override
 				public void onClick(View v) {
-					clienteAsync Cliente = new clienteAsync();
-					Cliente.execute("$"+id485+"te#");
+					
+					asinc.cancel(true);
 				}
 			});
 	    	
@@ -552,6 +560,66 @@ public class Lay_Dispositivo extends Activity{
 		    	
 		    }
 	    
+	 public class Autopull extends AsyncTask<Void, Void, Void>
+	 {
+	 
+		 
+		 @Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			
+		}
+		 
+		@Override
+		protected Void doInBackground(Void... params) {
+			
+			while(!isCancelled()){	
+			
+			try {
+				Thread.sleep(5000);
+				
+				publishProgress();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			if(isCancelled())break;
+			
+			
+			}
+			return null;
+		}
+		 
+		@Override
+		protected void onProgressUpdate(Void... values) {
+			// TODO Auto-generated method stub
+			super.onProgressUpdate(values);
+			 Toast.makeText(getApplicationContext(), "AutoPulling progreso!",Toast.LENGTH_SHORT).show();
+
+			clienteAsync prueba =new clienteAsync();
+			 prueba.execute("$"+id485+"te#");
+				
+		}
+		 @Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			
+			 Toast.makeText(getApplicationContext(), "AutoPulling Termindo!",Toast.LENGTH_SHORT).show();
+				
+			
+		}
+		 
+		 @Override
+		protected void onCancelled(Void result) {
+			// TODO Auto-generated method stub
+			super.onCancelled(result);
+			 Toast.makeText(getApplicationContext(), "AutoPulling Cancelado!",Toast.LENGTH_SHORT).show();
+		}
+		 
+	 }
+	 
+	 
 	 private void Levantar_XML() {
 	    	
 	    	btn_conectar=(Button) findViewById(R.id.btn_Conectar);
