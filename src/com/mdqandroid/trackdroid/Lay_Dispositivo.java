@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
@@ -57,6 +58,7 @@ public class Lay_Dispositivo extends Activity{
 	EditText editID485;
 	//StringBuilder sb ;
 	String id485=null;
+	CheckBox checkAutoPull;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +72,19 @@ public class Lay_Dispositivo extends Activity{
 		Botones();
 		//conectar();
 		TGbuttons();
+		Checkboxes();
 		
+	}
+
+	private void Checkboxes() {
+		checkAutoPull.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				Toast.makeText(getApplicationContext(),""+isChecked, Toast.LENGTH_SHORT).show();
+				
+			}
+		});
 		
 	}
 
@@ -320,7 +334,6 @@ public class Lay_Dispositivo extends Activity{
 	    		public void onClick(View v) {
 	    			String mensaje=edit_mensajeCliente.getText().toString();
 	    			mensajeExit=mensaje;
-	    		//	Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_SHORT).show();
 	    			clienteAsync Cliente = new clienteAsync();
 	    			Cliente.execute(mensaje);
 	    		
@@ -454,7 +467,7 @@ public class Lay_Dispositivo extends Activity{
 		    	
 		    	protected void onPreExecute(Void arg0) {
 		    	   super.onPreExecute();
-		    	 Log.d("deco", "n PREexecute");
+		    	
 		    	   DecoTipo="";
 		    	   DecoValor="";
 		    	}
@@ -464,16 +477,18 @@ public class Lay_Dispositivo extends Activity{
 		    		
 		    		 String selector =msg[0];
 		    		 SelectorGlobal=msg[0];
-		    		 DecoTipo = selector.substring(6,8);
-		    		
-		    		 if(selector.substring(0,1).equals("r")){
-		    			 DecoValor = selector.substring(3,4);
+		    		 DecoTipo = selector.substring(5,7);
+		    		Log.d("DecoTipo: ",DecoTipo);
+		    		 if(DecoTipo.substring(0,1).equals("r")){
+		    			 DecoValor = selector.substring(8,9);
+		    			 Log.d("DecoValor: ",DecoValor);
 		    			 if(DecoValor.equals("1"))
 		    			 {DecoRelay=true;}
 		    			 else{
 		    				 DecoRelay=false;}
 		    		 }else{
-		    		DecoValor = selector.substring(3,selector.length());}
+		    		DecoValor = SelectorGlobal.substring(7,9);
+		    		Log.d("DecoValor: ",DecoValor);}
 		    		
 		    		return DecoTipo;
 		    	}
@@ -495,7 +510,8 @@ public class Lay_Dispositivo extends Activity{
 		    	   
 		    	   super.onPostExecute(result);
 		    	switch (result) {
-					case "te":textA1.setText(DecoValor.substring(6, 11)+" °C ");
+					case "te":textA1.setText(DecoValor+" °C ");
+					
 						         	break;
 					case "a1":textA2.setText(DecoValor);
 						
@@ -554,6 +570,7 @@ public class Lay_Dispositivo extends Activity{
 	    	btn_Sensor3=(Button) findViewById(R.id.btn_Sensor3);
 	    	btn_Sensor4=(Button) findViewById(R.id.btn_Sensor4);
 	    	
+	    	checkAutoPull=(CheckBox) findViewById(R.id.checkAutoPullDevice);
 	    	
 	    	edit_ipServer=(EditText)findViewById(R.id.edit_IPServer);
 	    	edit_puerto=(EditText)findViewById(R.id.edit_puerto);
@@ -581,5 +598,6 @@ public class Lay_Dispositivo extends Activity{
 	    	
 	    }
 	    
+	 
 	
 }
