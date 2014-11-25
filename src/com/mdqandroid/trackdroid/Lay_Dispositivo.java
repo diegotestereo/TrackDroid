@@ -280,17 +280,18 @@ public class Lay_Dispositivo extends Activity{
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-	
+		Toast.makeText(getApplicationContext(),"OnREsume", Toast.LENGTH_SHORT).show();
+		
 		}
 		 
 	@Override
 	protected void onPause() {
 	    	
 	    	super.onPause();
-	    	clienteAsync Cliente = new clienteAsync();
-			Cliente.execute("q");
+	    //	clienteAsync Cliente = new clienteAsync();
+		//	Cliente.execute("q");
 			Toast.makeText(getApplicationContext(), "Se desconecto...", Toast.LENGTH_LONG).show();
-			finish();
+		//	finish();
 	    
 	    }
 	    
@@ -298,9 +299,11 @@ public class Lay_Dispositivo extends Activity{
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
-		clienteAsync Cliente = new clienteAsync();
-		Cliente.execute("q");
-		finish();
+//	clienteAsync Cliente = new clienteAsync();
+//		Cliente.execute("q");
+		Toast.makeText(getApplicationContext(), "OnStop", Toast.LENGTH_LONG).show();
+		
+		//finish();
 		
 	}
 	
@@ -450,14 +453,22 @@ public class Lay_Dispositivo extends Activity{
 	    				text_Status.setText("Desconectado");
 	    				edit_ipServer.setEnabled(true);
 	    				edit_puerto.setEnabled(true);
-	    			} catch (IOException e) {
+	    			} catch (UnknownHostException e) {
 	    				// TODO Auto-generated catch block
 	    				e.printStackTrace();
+	    				Toast.makeText(getApplicationContext(), "No se pudo Desconectar al dispositivo", Toast.LENGTH_LONG).show();
+	    			}  
+	    			catch (IOException e) {
+	    				// TODO Auto-generated catch block
+	    				e.printStackTrace();
+	    				Toast.makeText(getApplicationContext(), "No se pudo Desconectar al dispositivo", Toast.LENGTH_LONG).show();
+		    			
 	    			}
 	    		}
 	    //	Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
        DecodificaMensaje deco=new DecodificaMensaje();
        deco.execute(text_mensajeServer.getText().toString());
+       Log.d("text_mensajeServer",text_mensajeServer.getText().toString());
 	    	  }
 
 	    	
@@ -511,40 +522,22 @@ public class Lay_Dispositivo extends Activity{
 		    	   super.onPostExecute(result);
 		    	switch (result) {
 					case "te":textA1.setText(DecoValor+" °C ");
-					
-						         	break;
-					case "a1":textA2.setText(DecoValor);
-						
-						break;
-					case "h1":textA3.setText(DecoValor);
-						
-						break;
-					case "h2":textA4.setText(DecoValor);
-						
-						break;
+					   	break;
 					case "r1":toggleR1.setChecked(DecoRelay);
-						
 						break;
 					case "r2":toggleR2.setChecked(DecoRelay);
-						
 						break;
 					case "r3":toggleR3.setChecked(DecoRelay);
-						
 						break;
 					case "r4":toggleR4.setChecked(DecoRelay);
-						
 						break;
 					case "r5":toggleR5.setChecked(DecoRelay);
-						
 						break;
 					case "r6":toggleR6.setChecked(DecoRelay);
-						
 						break;
 					case "r7":toggleR7.setChecked(DecoRelay);
-						
 						break;
 					case "r8":toggleR8.setChecked(DecoRelay);
-						
 						break;
 					
 					default:

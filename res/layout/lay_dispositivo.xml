@@ -104,8 +104,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.55"
                     android:enabled="false"
-                    android:visibility="invisible"
-                    android:text="Desconectar" />
+                    android:text="Desconectar"
+                    android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/textPrueba"
