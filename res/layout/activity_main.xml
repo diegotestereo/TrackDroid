@@ -23,15 +23,72 @@
             style="@style/estilo_dispositivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Disp 1" />
+            android:text="Bal 1" />
 
         <Button
             android:id="@+id/btn_disp2"
             style="@style/estilo_dispositivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Disp 2" />
+            android:text="Bal 2" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/Button05"
+            style="@style/estilo_dispositivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bal 3" />
+
+        <Button
+            android:id="@+id/Button06"
+            style="@style/estilo_dispositivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bal 4" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/Button03"
+            style="@style/estilo_dispositivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bal 11" />
+
+        <Button
+            android:id="@+id/Button04"
+            style="@style/estilo_dispositivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bal 12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/Button01"
+            style="@style/estilo_dispositivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bal 23" />
+
+        <Button
+            android:id="@+id/Button02"
+            style="@style/estilo_dispositivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bal 24" />
     </LinearLayout>
 
     <LinearLayout

@@ -496,18 +496,18 @@ public class Lay_Dispositivo extends Activity{
 		    		
 		    		 String selector =msg[0];
 		    		 SelectorGlobal=msg[0];
-		    		 DecoTipo = selector.substring(5,7);
+		    		 DecoTipo = selector.substring(6,8);
 		    		Log.d("DecoTipo: ",DecoTipo);
 		    		 if(DecoTipo.substring(0,1).equals("r")){
-		    			 DecoValor = selector.substring(8,9);
+		    			 DecoValor = SelectorGlobal.substring(9,10);
 		    			 Log.d("DecoValor: ",DecoValor);
 		    			 if(DecoValor.equals("1"))
 		    			 {DecoRelay=true;}
 		    			 else{
 		    				 DecoRelay=false;}
 		    		 }else{
-		    		DecoValor = SelectorGlobal.substring(7,9);
-		    		Log.d("DecoValor: ",DecoValor);}
+		    		DecoValor = SelectorGlobal.substring(9,13);
+		    		Log.d("DecoValor temp: ",DecoValor);}
 		    		
 		    		return DecoTipo;
 		    	}
